@@ -1,0 +1,110 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #ffffff;
+    color: #000000;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+    line-height: 1.6;
+}
+
+
+a {
+    color: #0000ee; 
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+h1 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+
+.nav {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+#clock {
+    margin-bottom: 20px;
+    color: #555555;
+}
+
+.content p {
+    margin-bottom: 15px;
+}
+
+.left-img {
+    display: block;
+    margin-bottom: 30px;
+    width: 250px;
+    max-width: 100%;
+    height: auto;
+}
+
+/* De links zelf */
+.floating-link {
+    position: absolute; 
+    color: #0000ee;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    z-index: 100;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.floating-link:hover {
+    text-decoration: underline;
+    color: #000000;
+}
+
+#linkArea {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+
+.floating-link {
+    position: absolute;
+    color: #0000ee;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.floating-link:hover {
+    text-decoration: underline;
+    color: #000000;
+}
+
+
+/* about section */
+
+
+.about-content {
+    max-width: 800px;
+    margin: 200px auto 0 auto;
+    text-align: justify;
+    padding: 0 40px;
+    line-height: 1.8;
+}
+
+
+.about-img {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 250px;
+    height: auto;
+}
+
+
+/* contact section */ 
