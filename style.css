@@ -49,6 +49,7 @@ h1 {
 }
 
 /* De links zelf */
+
 .floating-link {
     position: absolute; 
     color: #0000ee;
@@ -107,5 +108,43 @@ h1 {
 }
 
 
-/* contact section */ 
+/* for mobile */
 
+.no-wrap {
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 768px) {
+    
+    .floating-link {
+        position: static !important;
+        display: block;
+        text-align: center;
+        padding: 10px 0;
+        margin: 5px 0;
+    }
+
+    #linkArea {
+        height: auto !important;
+        margin-top: 40px;
+    }
+
+    .about-img, .contact-img {
+        position: relative !important;
+        display: block;
+        margin: 0 auto 20px auto; 
+        width: 100% !important;   
+        max-width: 300px;
+    }
+
+    .about-content, .faq-content, .contact-content {
+        margin-top: 20px !important;
+        padding: 0 20px !important;
+        text-align: left;
+    }
+
+    body {
+        word-wrap: break-word;
+        overflow-x: hidden;
+    }
+}
