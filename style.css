@@ -110,11 +110,15 @@ h1 {
 
 /* for mobile */
 
-@media screen and (max-width: 600px) {
+.no-wrap {
+    white-space: nowrap;
+}
 
+@media screen and (max-width: 768px) {
+    
     .floating-link {
         position: static !important;
-        display: block;              
+        display: block;
         text-align: center;
         padding: 10px 0;
         margin: 5px 0;
@@ -124,10 +128,23 @@ h1 {
         height: auto !important;
         margin-top: 40px;
     }
-    
-    img {
-        max-width: 100%;
-        height: auto;
+
+    .about-img, .contact-img {
+        position: relative !important;
+        display: block;
+        margin: 0 auto 20px auto; 
+        width: 100% !important;   
+        max-width: 300px;
+    }
+
+    .about-content, .faq-content, .contact-content {
+        margin-top: 20px !important;
+        padding: 0 20px !important;
+        text-align: left;
+    }
+
+    body {
+        word-wrap: break-word;
+        overflow-x: hidden;
     }
 }
-
