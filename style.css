@@ -49,6 +49,7 @@ h1 {
 }
 
 /* De links zelf */
+
 .floating-link {
     position: absolute; 
     color: #0000ee;
@@ -107,5 +108,26 @@ h1 {
 }
 
 
-/* contact section */ 
+/* for mobile */
+
+@media screen and (max-width: 600px) {
+
+    .floating-link {
+        position: static !important;
+        display: block;              
+        text-align: center;
+        padding: 10px 0;
+        margin: 5px 0;
+    }
+
+    #linkArea {
+        height: auto !important;
+        margin-top: 40px;
+    }
+    
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
 
