@@ -72,3 +72,16 @@ function animate() {
 }
 
 setTimeout(animate, 100);
+
+
+
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-theme');
+    
+    const btn = document.getElementById('darkModeBtn');
+    if (document.body.classList.contains('dark-theme')) {
+        btn.innerText = 'light mode';
+    } else {
+        btn.innerText = 'dark mode';
+    }
+}
