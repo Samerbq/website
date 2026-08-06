@@ -148,3 +148,34 @@ h1 {
         overflow-x: hidden;
     }
 }
+
+
+/* dark mode */
+
+#darkModeBtn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 1rem;
+    color: #0000ee;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+#darkModeBtn:hover {
+    text-decoration: underline;
+}
+
+
+body.dark-theme {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-theme a, 
+body.dark-theme #darkModeBtn {
+    color: #8ab4f8 !important;
+}
