@@ -1,7 +1,7 @@
 // stack
 
 const stack   = document.getElementById( 'stack' )
-const trigger = stack.querySelector( '.folder-trigger' )
+const trigger = stack.querySelector    ( '.folder-trigger' )
 
 trigger.addEventListener( 'click', function( e ) {
     e.stopPropagation()
