@@ -59,6 +59,18 @@ h1 {
 
 }
 
+.cursor {
+
+    animation : blink 1s steps( 1 ) infinite  ;
+
+}
+
+@keyframes blink {
+
+    50% { opacity : 0 ; }
+
+}
+
 .content p {
 
     margin-bottom : 15px  ;
@@ -293,6 +305,25 @@ body.dark-theme .item {
     background   : #1e1e1e             ;
     border-color : #333                ;
     color        : #e0e0e0 !important  ;
+
+}
+
+
+/* reduced motion ( visitor turned off animations on their device ) */
+
+@media ( prefers-reduced-motion : reduce ) {
+
+    .cursor {
+
+        animation : none  ;
+
+    }
+
+    .item   {
+
+        transition : none  ;
+
+    }
 
 }
 

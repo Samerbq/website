@@ -1,5 +1,13 @@
 // live clock
 
+function getStatus( hour ) {
+
+    if ( hour < 7  ) return 'probably sleeping'
+    if ( hour < 9  ) return 'probably waking up'
+    if ( hour < 17 ) return 'probably at uni'
+    return 'probably coding'
+}
+
 function updateTime() {
 
     const now        = new Date()
@@ -7,8 +15,13 @@ function updateTime() {
         timeZone : 'Europe/Brussels',
         hour12   : true
     } )
+    const hour       = Number( now.toLocaleString( 'en-US', {
+        timeZone  : 'Europe/Brussels',
+        hour      : 'numeric',
+        hourCycle : 'h23'
+    } ) )
 
-    document.getElementById( 'clock' ).innerText = ' central european time - ' + timeString
+    document.getElementById( 'clock' ).innerText = ' central european time - ' + timeString + ' - ' + getStatus( hour )
 }
 
 setInterval( updateTime, 1000 )
@@ -30,7 +43,13 @@ const floatingLinks = []
 const area          = document.getElementById( 'linkArea' )
 
 const SPEED = 0.70
-let linedUp = localStorage.getItem( 'lineUp' ) === 'on'
+
+// no choice saved yet -> line up when the visitor turned off animations on their device
+
+const savedLineUp   = localStorage.getItem( 'lineUp' )
+const reducedMotion = window.matchMedia   ( '( prefers-reduced-motion : reduce )' ).matches
+
+let linedUp = savedLineUp === 'on' || ( savedLineUp === null && reducedMotion )
 
 LINKS.forEach( ( link ) => {
 
