@@ -44,12 +44,12 @@ const area          = document.getElementById( 'linkArea' )
 
 const SPEED = 0.70
 
-// no choice saved yet -> line up when the visitor turned off animations on their device
+// no choice saved yet -> line up when animations are on low
 
-const savedLineUp   = localStorage.getItem( 'lineUp' )
-const reducedMotion = window.matchMedia   ( '( prefers-reduced-motion : reduce )' ).matches
+const savedLineUp = localStorage.getItem( 'lineUp' )
+const lowMotion   = document.body.classList.contains( 'low-motion' )
 
-let linedUp = savedLineUp === 'on' || ( savedLineUp === null && reducedMotion )
+let linedUp = savedLineUp === null ? lowMotion : savedLineUp === 'on'
 
 LINKS.forEach( ( link ) => {
 
@@ -114,12 +114,16 @@ setTimeout( animate, 100 )
 
 // line up button
 
-function toggleLineUp() {
+function setLineUp( on ) {
 
-    linedUp = !linedUp
+    linedUp = on
 
     localStorage.setItem   ( 'lineUp', linedUp ? 'on' : 'off' )
     document.getElementById( 'lineUpBtn' ).innerText = linedUp ? 'float' : 'line up'
+}
+
+function toggleLineUp() {
+    setLineUp( !linedUp )
 }
 
 if ( linedUp ) {
