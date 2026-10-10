@@ -17,6 +17,7 @@ function toggleMotion() {
     updateMotionBtn()
 
     // low -> stop the floating links too ( only exists on the home page )
+    
     if ( typeof setLineUp === 'function' ) setLineUp( isLow )
 }
 
