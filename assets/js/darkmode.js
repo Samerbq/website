@@ -22,7 +22,12 @@ function updateDarkModeBtn() {
     }
 }
 
-if ( localStorage.getItem( 'theme' ) === 'dark' ) {
+// no choice saved yet -> follow the dark / light setting of the visitor's device
+
+const savedTheme = localStorage.getItem( 'theme' )
+const systemDark = window.matchMedia   ( '( prefers-color-scheme : dark )' ).matches
+
+if ( savedTheme === 'dark' || ( savedTheme === null && systemDark ) ) {
     document.body.classList.add( 'dark-theme' )
 }
 
