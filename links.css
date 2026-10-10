@@ -1,15 +1,19 @@
 /* stack */
 
+/* open button in the middle of the screen ( 24px = half the button ) */
+
 .stack-container {
 
-    position        : relative   ;
-    width           : 120px      ;
-    height          : 360px      ;
-    margin          : 40px auto  ;
-    display         : flex       ;
-    flex-direction  : column     ;
-    justify-content : flex-end   ;
-    align-items     : center     ;
+    position        : absolute                                 ;
+    top             : 50vh                                     ;
+    left            : 50%                                      ;
+    transform       : translate( -50%, calc( -100% + 24px ) )  ;
+    width           : 120px                                    ;
+    height          : 360px                                    ;
+    display         : flex                                     ;
+    flex-direction  : column                                   ;
+    justify-content : flex-end                                 ;
+    align-items     : center                                   ;
 
 }
 
@@ -75,6 +79,23 @@
 .stack-container.open .item:nth-child( 2 ) { transform : translate( 26px, -192px ) rotate( 6deg ) ; }
 .stack-container.open .item:nth-child( 3 ) { transform : translate( 16px, -128px ) rotate( 4deg ) ; }
 .stack-container.open .item:nth-child( 4 ) { transform : translate(  6px,  -64px ) rotate( 2deg ) ; }
+
+
+/* for mobile */
+
+@media screen and ( max-width : 768px ) {
+
+    .stack-container {
+
+        position  : relative   ;
+        top       : auto       ;
+        left      : auto       ;
+        transform : none       ;
+        margin    : 40px auto  ;
+
+    }
+
+}
 
 
 /* dark mode */
