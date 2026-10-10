@@ -75,10 +75,9 @@
 
 }
 
-.stack-container.open .item:nth-child( 1 ) { transform : translate( 36px, -256px ) rotate( 8deg ) ; }
-.stack-container.open .item:nth-child( 2 ) { transform : translate( 26px, -192px ) rotate( 6deg ) ; }
-.stack-container.open .item:nth-child( 3 ) { transform : translate( 16px, -128px ) rotate( 4deg ) ; }
-.stack-container.open .item:nth-child( 4 ) { transform : translate(  6px,  -64px ) rotate( 2deg ) ; }
+.stack-container.open .item:nth-child( 1 ) { transform : translate( 26px, -192px ) rotate( 6deg ) ; }
+.stack-container.open .item:nth-child( 2 ) { transform : translate( 16px, -128px ) rotate( 4deg ) ; }
+.stack-container.open .item:nth-child( 3 ) { transform : translate(  6px,  -64px ) rotate( 2deg ) ; }
 
 
 /* for mobile */
