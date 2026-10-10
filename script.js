@@ -25,7 +25,7 @@ const floatingLinks = [];
 const area = document.getElementById('linkArea'); 
 
 const SPEED = 0.70; 
-let linedUp = false;
+let linedUp = localStorage.getItem('lineUp') === 'on'
 
 LINKS.forEach((link) => {
   const el = document.createElement('a');
@@ -90,6 +90,11 @@ setTimeout(animate, 100);
 function toggleLineUp() {
 
   linedUp = !linedUp
+  localStorage.setItem( 'lineUp', linedUp? 'on' : 'off' )
   document.getElementById('lineUpBtn').innerText = linedUp ? 'float': 'line up'
 
+}
+
+if (linedUp) {
+  document.getElementById('lineUpBtn').innerText = 'float'
 }
