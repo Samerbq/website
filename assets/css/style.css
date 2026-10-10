@@ -253,7 +253,8 @@ h1 {
 /* buttons ( dark mode + line up ) */
 
 #darkModeBtn,
-#lineUpBtn {
+#lineUpBtn,
+#motionBtn {
 
     position    : fixed      ;
     top         : 20px       ;
@@ -274,8 +275,18 @@ h1 {
 
 }
 
+#motionBtn {
+
+    top    : auto  ;
+    right  : auto  ;
+    bottom : 20px  ;
+    left   : 20px  ;
+
+}
+
 #darkModeBtn:hover,
-#lineUpBtn:hover {
+#lineUpBtn:hover,
+#motionBtn:hover {
 
     text-decoration : underline  ;
 
@@ -293,7 +304,8 @@ body.dark-theme {
 
 body.dark-theme a,
 body.dark-theme #darkModeBtn,
-body.dark-theme #lineUpBtn {
+body.dark-theme #lineUpBtn,
+body.dark-theme #motionBtn {
 
     color : #8ab4f8 !important  ;
 
@@ -309,21 +321,17 @@ body.dark-theme .item {
 }
 
 
-/* reduced motion ( visitor turned off animations on their device ) */
+/* animations on low ( motion.js ) */
 
-@media ( prefers-reduced-motion : reduce ) {
+body.low-motion .cursor {
 
-    .cursor {
+    animation : none  ;
 
-        animation : none  ;
+}
 
-    }
+body.low-motion .item {
 
-    .item   {
-
-        transition : none  ;
-
-    }
+    transition : none  ;
 
 }
 
