@@ -198,7 +198,7 @@ body.dark-theme #darkModeBtn {
 }
 
 
-#lineUpBtn :hover {
+#lineUpBtn:hover {
     text-decoration : underline ;
 }
 
@@ -208,6 +208,6 @@ body.dark-theme #lineUpBtn {
 
 @media screen and (max-width: 768px) {
     #lineUpBtn {
-        display: none:
+        display: none;
     }
 }
