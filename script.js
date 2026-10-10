@@ -62,7 +62,7 @@ function animate() {
         if ( linedUp ) {
 
             const targetX = spacing * i + ( spacing - link.el.offsetWidth ) / 2
-            const targetY = ( h - link.el.offsetHeight ) / 2
+            const targetY =               ( h - link.el.offsetHeight      ) / 2
 
             link.x += ( targetX - link.x ) * 0.08
             link.y += ( targetY - link.y ) * 0.08
@@ -99,7 +99,7 @@ function toggleLineUp() {
 
     linedUp = !linedUp
 
-    localStorage.setItem( 'lineUp', linedUp ? 'on' : 'off' )
+    localStorage.setItem   ( 'lineUp', linedUp ? 'on' : 'off' )
     document.getElementById( 'lineUpBtn' ).innerText = linedUp ? 'float' : 'line up'
 }
 
@@ -111,8 +111,8 @@ if ( linedUp ) {
 
     floatingLinks.forEach( ( link, i ) => {
 
-        link.x = spacing * i + ( spacing - link.el.offsetWidth ) / 2
-        link.y = ( area.offsetHeight - link.el.offsetHeight )   / 2
+        link.x = spacing * i + ( spacing - link.el.offsetWidth            ) / 2
+        link.y =               ( area.offsetHeight - link.el.offsetHeight ) / 2
 
         link.el.style.left = link.x + 'px'
         link.el.style.top  = link.y + 'px'

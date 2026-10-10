@@ -50,7 +50,7 @@ h1 {
 
 .content p {
 
-    margin-bottom : 15px   ;
+    margin-bottom : 15px  ;
 
 }
 
@@ -81,8 +81,8 @@ h1 {
 
 .floating-link:hover {
 
-    text-decoration : underline    ;
-    color           : #000000    ;
+    text-decoration : underline  ;
+    color           : #000000  ;
 
 }
 
@@ -188,7 +188,7 @@ h1 {
 
 #darkModeBtn {
 
-    position    : fixed      ; 
+    position    : fixed      ;
     top         : 20px       ;
     right       : 20px       ;
     background  : none       ;
@@ -247,6 +247,6 @@ body.dark-theme #darkModeBtn {
 
 body.dark-theme #lineUpBtn {
 
-    color : #8ab4f8 !important ;
+    color : #8ab4f8 !important  ;
 
 }
