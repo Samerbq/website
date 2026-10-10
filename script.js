@@ -25,6 +25,7 @@ const floatingLinks = [];
 const area = document.getElementById('linkArea'); 
 
 const SPEED = 0.70; 
+let linedUp = localStorage.getItem('lineUp') === 'on'
 
 LINKS.forEach((link) => {
   const el = document.createElement('a');
@@ -46,13 +47,23 @@ LINKS.forEach((link) => {
 });
 
 function animate() {
-  const w = area.offsetWidth;
-  const h = area.offsetHeight;
+  const w = area.offsetWidth
+  const h = area.offsetHeight
+  const spacing = w / floatingLinks.length
 
-  floatingLinks.forEach(link => {
-    link.x += link.vx;
-    link.y += link.vy;
+  floatingLinks.forEach((link, i) => {
+    
+    if (linedUp) {
+      const targetX = spacing * i + ( spacing - link.el.offsetWidth ) / 2
+      const targetY = ( h - link.el.offsetHeight ) / 2
 
+      link.x += ( targetX - link.x ) * 0.08
+      link.y += ( targetY - link.y ) * 0.08
+
+    } else {
+
+      link.x += link.vx;
+      link.y += link.vy;
 
     if (link.x <= 0 || link.x >= w - link.el.offsetWidth) { 
         link.vx *= -1; 
@@ -63,12 +74,27 @@ function animate() {
         link.vy *= -1; 
         link.y = Math.max(0, Math.min(h - link.el.offsetHeight, link.y)); 
     }
-
+  }
+    
     link.el.style.left = link.x + 'px';
     link.el.style.top = link.y + 'px';
+
   });
 
   requestAnimationFrame(animate);
 }
 
 setTimeout(animate, 100);
+
+
+function toggleLineUp() {
+
+  linedUp = !linedUp
+  localStorage.setItem( 'lineUp', linedUp? 'on' : 'off' )
+  document.getElementById('lineUpBtn').innerText = linedUp ? 'float': 'line up'
+
+}
+
+if (linedUp) {
+  document.getElementById('lineUpBtn').innerText = 'float'
+}
