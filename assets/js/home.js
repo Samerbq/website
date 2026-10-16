@@ -1,13 +1,5 @@
 // live clock
 
-function getStatus( hour ) {
-
-    if ( hour < 7  ) return 'probably sleeping'
-    if ( hour < 9  ) return 'probably waking up'
-    if ( hour < 17 ) return 'probably at uni'
-    return 'probably coding'
-}
-
 function updateTime() {
 
     const now        = new Date()
@@ -15,13 +7,8 @@ function updateTime() {
         timeZone : 'Europe/Brussels',
         hour12   : true
     } )
-    const hour       = Number( now.toLocaleString( 'en-US', {
-        timeZone  : 'Europe/Brussels',
-        hour      : 'numeric',
-        hourCycle : 'h23'
-    } ) )
 
-    document.getElementById( 'clock' ).innerText = ' central european time - ' + timeString + ' - ' + getStatus( hour )
+    document.getElementById( 'clock' ).innerText = ' central european time - ' + timeString
 }
 
 setInterval( updateTime, 1000 )
