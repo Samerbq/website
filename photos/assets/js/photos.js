@@ -17,6 +17,10 @@ function watchPhoto( img ) {
         if ( photo.classList.contains( 'natural' ) ) {
             photo.style.aspectRatio = img.naturalWidth + ' / ' + img.naturalHeight
         }
+
+        // only show the photo once it is fully there ( soft fade , never half drawn )
+
+        img.classList.add( 'loaded' )
     }
 
     function missing() {
@@ -44,6 +48,7 @@ function makePhoto( src, natural ) {
     photo.className = natural ? 'photo natural' : 'photo'
     img.alt         = 'photo'
     img.loading     = 'lazy'
+    img.decoding    = 'async'
     img.src         = src
 
     photo.appendChild( img )
@@ -104,6 +109,12 @@ function fileList( el ) {
     return files
 }
 
+// small version of a photo ( for thumbnails and mini photos )
+
+function small( src ) {
+    return src.replace( 'img/', 'img/small/' )
+}
+
 // 01
 // / 08
 
@@ -152,7 +163,7 @@ document.querySelectorAll( '.gallery' ).forEach( ( gallery ) => {
 
         files.forEach( ( src ) => {
 
-            const thumb = makePhoto( src, false )
+            const thumb = makePhoto( small( src ), false )
             const index = thumbs.length
 
             thumb.classList.add    ( 'thumb' )
@@ -370,5 +381,5 @@ document.querySelectorAll( '.slider' ).forEach( ( slider ) => {
 // mini photos
 
 document.querySelectorAll( '.grid' ).forEach( ( grid ) => {
-    fileList( grid ).forEach( ( src ) => grid.appendChild( makePhoto( src, false ) ) )
+    fileList( grid ).forEach( ( src ) => grid.appendChild( makePhoto( small( src ), false ) ) )
 } )
