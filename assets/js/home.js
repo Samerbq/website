@@ -31,12 +31,16 @@ const area          = document.getElementById( 'linkArea' )
 
 const SPEED = 0.70
 
+// float - turned off for now -> links are always lined up
+
 // no choice saved yet -> line up when animations are on low
 
-const savedLineUp = localStorage.getItem( 'lineUp' )
-const lowMotion   = document.body.classList.contains( 'low-motion' )
+// const savedLineUp = localStorage.getItem( 'lineUp' )
+// const lowMotion   = document.body.classList.contains( 'low-motion' )
 
-let linedUp = savedLineUp === null ? lowMotion : savedLineUp === 'on'
+// let linedUp = savedLineUp === null ? lowMotion : savedLineUp === 'on'
+
+let linedUp = true
 
 LINKS.forEach( ( link ) => {
 
@@ -73,7 +77,9 @@ function animate() {
             link.x += ( targetX - link.x ) * 0.08
             link.y += ( targetY - link.y ) * 0.08
 
-        } else {
+        } /* float - turned off for now
+
+        else {
 
             link.x += link.vx
             link.y += link.vy
@@ -87,7 +93,7 @@ function animate() {
                 link.vy *= -1
                 link.y   = Math.max( 0, Math.min( h - link.el.offsetHeight, link.y ) )
             }
-        }
+        } */
 
         link.el.style.left = link.x + 'px'
         link.el.style.top  = link.y + 'px'
@@ -99,8 +105,9 @@ function animate() {
 setTimeout( animate, 100 )
 
 
-// line up button
+// line up button - turned off for now
 
+/*
 function setLineUp( on ) {
 
     linedUp = on
@@ -112,10 +119,13 @@ function setLineUp( on ) {
 function toggleLineUp() {
     setLineUp( !linedUp )
 }
+*/
+
+// start lined up
 
 if ( linedUp ) {
 
-    document.getElementById( 'lineUpBtn' ).innerText = 'float'
+    // document.getElementById( 'lineUpBtn' ).innerText = 'float'
 
     const spacing = area.offsetWidth / floatingLinks.length
 

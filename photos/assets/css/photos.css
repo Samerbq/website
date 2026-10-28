@@ -1,0 +1,732 @@
+/* base */
+
+body {
+
+    font-family      : 'Crimson Pro', Georgia, serif  ;
+    font-weight      : 300                            ;
+    font-size        : 1.15rem                        ;
+    background-color : #ffffff                      ;
+    color            : #222222                      ;
+    margin           : 0                              ;
+    line-height      : 1.6                            ;
+
+}
+
+a {
+
+    color           : inherit  ;
+    text-decoration : none     ;
+
+}
+
+a:hover {
+
+    text-decoration : underline  ;
+
+}
+
+h1,
+h2,
+h3 {
+
+    font-family : 'Lato', sans-serif  ;
+    font-weight : 300                 ;
+    margin      : 0                   ;
+
+}
+
+section {
+
+    box-sizing : border-box  ;
+
+}
+
+
+/* photos ( grey box with the file name when the photo is not uploaded yet ) */
+
+.photo {
+
+    position     : relative   ;
+    overflow     : hidden     ;
+    background   : #e8e8e8  ;
+    aspect-ratio : 4 / 5      ;
+
+}
+
+.photo img {
+
+    display               : block  ;
+    width                 : 100%   ;
+    height                : 100%   ;
+    object-fit            : cover  ;
+    user-select           : none   ;
+    -webkit-user-drag     : none   ;
+    -webkit-touch-callout : none   ;
+
+}
+
+.photo[data-name]::before {
+
+    content         : attr( data-name )  ;
+    position        : absolute           ;
+    inset           : 0                  ;
+    display         : flex               ;
+    justify-content : center             ;
+    align-items     : center             ;
+    padding         : 10px               ;
+    text-align      : center             ;
+    font-size       : 0.8rem             ;
+    color           : #888888          ;
+
+}
+
+
+/* buttons */
+
+.btn {
+
+    display        : inline-block                 ;
+    font-family    : 'Lato', sans-serif           ;
+    font-weight    : 700                          ;
+    padding        : 16px 32px                    ;
+    border         : 1px solid #ffffff          ;
+    color          : #ffffff                    ;
+    font-size      : 0.85rem                      ;
+    letter-spacing : 5px                          ;
+    transition     : background 0.3s, color 0.3s  ;
+
+}
+
+.btn:hover {
+
+    background      : #ffffff  ;
+    color           : #000000  ;
+    text-decoration : none       ;
+
+}
+
+
+/* hero ( home page , a bit shorter than the screen so you see there is more below ) */
+
+.hero {
+
+    position   : relative   ;
+    height     : 88vh       ;
+    min-height : 500px      ;
+    background : #212121  ;
+    color      : #ffffff  ;
+
+}
+
+/* photo on the right of the title / year ( the whole photo , nothing cropped ) */
+
+.hero-photo,
+.cover-photo {
+
+    position   : absolute                          ;
+    top        : 50%                               ;
+    right      : max( 40px, calc( 50% - 660px ) )  ;
+    z-index    : 2                                 ;
+    height     : 76%                               ;
+    transform  : translateY( -50% )                ;
+    background : #2e2e2e                         ;
+
+}
+
+.hero-text {
+
+    position        : absolute             ;
+    inset           : 0                    ;
+    z-index         : 2                    ;
+    display         : flex                 ;
+    flex-direction  : column               ;
+    justify-content : space-between        ;
+    align-items     : flex-start           ;
+    max-width       : 1400px               ;
+    margin          : 0 auto               ;
+    padding         : 22vh 40px 12vh 40px  ;
+    box-sizing      : border-box           ;
+
+}
+
+.hero-text h1 {
+
+    font-size   : 4.5rem  ;
+    line-height : 1.1     ;
+
+}
+
+
+/* art / vision / value */
+
+.words {
+
+    display               : grid              ;
+    grid-template-columns : repeat( 3, 1fr )  ;
+    gap                   : 80px              ;
+    max-width             : 1400px            ;
+    margin                : 0 auto            ;
+    padding               : 120px 40px        ;
+
+}
+
+.words h2 {
+
+    font-size     : 2.2rem  ;
+    margin-bottom : 10px    ;
+
+}
+
+.words p {
+
+    margin      : 0    ;
+    line-height : 1.8  ;
+
+}
+
+
+/* row of 4 photos */
+
+.row {
+
+    display               : grid               ;
+    grid-template-columns : repeat( 4, 1fr )   ;
+    gap                   : 80px               ;
+    max-width             : 1400px             ;
+    margin                : 0 auto             ;
+    padding               : 0 40px 120px 40px  ;
+
+}
+
+.row figure {
+
+    margin : 0  ;
+
+}
+
+.row figcaption {
+
+    margin-top : 30px       ;
+    text-align : center     ;
+    color      : #555555  ;
+
+}
+
+
+/* story ( photo left , text right ) */
+
+.story {
+
+    background : #f9f8f6  ;
+    padding    : 120px 0    ;
+
+}
+
+.story-inner {
+
+    display               : grid        ;
+    grid-template-columns : 1fr 1fr     ;
+    gap                   : 80px        ;
+    align-items           : center      ;
+    max-width             : 1400px      ;
+    margin                : 0 auto      ;
+    padding               : 0 40px      ;
+    box-sizing            : border-box  ;
+
+}
+
+.story-text {
+
+    max-width  : 540px   ;
+    margin     : 0 auto  ;
+    text-align : center  ;
+
+}
+
+.story-text h3 {
+
+    font-size      : 1rem  ;
+    font-weight    : bold  ;
+    letter-spacing : 1px   ;
+    margin-bottom  : 30px  ;
+
+}
+
+.story-text p {
+
+    line-height : 1.8  ;
+
+}
+
+
+/* season cover ( year left , photo right ) */
+
+.cover {
+
+    position      : relative   ;
+    height        : 75vh       ;
+    min-height    : 400px      ;
+    margin-bottom : 120px      ;
+    background    : #212121  ;
+
+}
+
+.cover h2 {
+
+    position  : absolute                          ;
+    top       : 50%                               ;
+    left      : max( 40px, calc( 50% - 660px ) )  ;
+    z-index   : 2                                 ;
+    transform : translateY( -50% )                ;
+    font-size : 4.5rem                            ;
+    color     : #ffffff                         ;
+
+}
+
+/* small link under the year ( back to the photos home ) */
+
+.cover-back {
+
+    position       : absolute                          ;
+    bottom         : 14%                               ;
+    left           : max( 40px, calc( 50% - 660px ) )  ;
+    z-index        : 2                                 ;
+    font-family    : 'Lato', sans-serif                ;
+    font-size      : 0.85rem                           ;
+    letter-spacing : 3px                               ;
+    color          : #e0e0e0                         ;
+
+}
+
+
+/* gallery ( big photo + thumbnails on the left + counter on the right ) */
+
+.gallery {
+
+    display               : grid                        ;
+    grid-template-columns : 1fr minmax( 0, 580px ) 1fr  ;
+    align-items           : center                      ;
+    max-width             : 1400px                      ;
+    margin                : 0 auto                      ;
+    padding               : 0 40px                      ;
+    box-sizing            : border-box                  ;
+
+}
+
+.thumbs {
+
+    display        : flex    ;
+    flex-direction : column  ;
+    align-items    : center  ;
+    justify-self   : start   ;
+    gap            : 20px    ;
+    padding-left   : 40px    ;
+
+}
+
+.thumb-list {
+
+    position : relative  ;
+    height   : 526px     ;
+    overflow : hidden    ;
+
+}
+
+/* 9 thumbnails fit ( 9 x 30px + 8 x 32px ) , the track slides one step each time */
+
+.thumb-track {
+
+    position       : relative             ;
+    display        : flex                 ;
+    flex-direction : column               ;
+    gap            : 32px                 ;
+    transition     : transform 0.5s ease  ;
+
+}
+
+.thumb {
+
+    flex-shrink  : 0             ;
+    width        : 30px          ;
+    height       : 30px          ;
+    aspect-ratio : auto          ;
+    opacity      : 0.5           ;
+    cursor       : pointer       ;
+    transition   : opacity 0.3s  ;
+
+}
+
+.thumb.active,
+.thumb:hover {
+
+    opacity : 1  ;
+
+}
+
+.thumb[data-name]::before {
+
+    content : none  ;
+
+}
+
+.arrow {
+
+    background : none     ;
+    border     : none     ;
+    padding    : 5px      ;
+    color      : inherit  ;
+    cursor     : pointer  ;
+
+}
+
+.arrow svg {
+
+    display : block  ;
+    width   : 24px   ;
+    height  : 12px   ;
+
+}
+
+/* big photo : always the same frame , the whole photo fits inside ( also tall 9:16 ones ) */
+
+.gallery .main {
+
+    display     : grid    ;
+    place-items : center  ;
+
+}
+
+.gallery .main .photo {
+
+    width        : min( 580px, 100% )  ;
+    height       : min( 80vh, 725px )  ;
+    aspect-ratio : auto                ;
+    background   : #ffffff           ;
+    grid-area    : 1 / 1               ;
+    opacity      : 0                   ;
+    transition   : opacity 0.5s ease   ;
+
+}
+
+/* every photo in the same white frame -> the new one always covers the old one completely ( no strips on the sides ) */
+
+.gallery .main .photo img {
+
+    object-fit : contain  ;
+
+}
+
+.counter {
+
+    font-size   : 0.95rem  ;
+    line-height : 1.5      ;
+    text-align  : right    ;
+
+}
+
+.gallery .counter {
+
+    justify-self  : end   ;
+    padding-right : 40px  ;
+
+}
+
+
+/* slider ( big photos next to each other ) */
+
+.slider {
+
+    margin-top     : 120px                                                         ;
+    padding-bottom : 80px                                                          ;
+    overflow       : hidden                                                        ;
+    background     : linear-gradient( to bottom, transparent 15%, #f2f2f2 15% )  ;
+
+}
+
+.track {
+
+    position    : relative             ;
+    display     : flex                 ;
+    align-items : flex-start           ;
+    gap         : 32px                 ;
+    transition  : transform 0.6s ease  ;
+
+}
+
+.slide {
+
+    flex-shrink : 0                   ;
+    height      : min( 70vh, 575px )  ;
+
+}
+
+.slider-nav {
+
+    display         : flex    ;
+    justify-content : center  ;
+    align-items     : center  ;
+    gap             : 80px    ;
+    margin-top      : 60px    ;
+
+}
+
+.slider-nav button {
+
+    background  : none     ;
+    border      : none     ;
+    font-family : inherit  ;
+    font-size   : 1.4rem   ;
+    color       : inherit  ;
+    cursor      : pointer  ;
+
+}
+
+.slider .counter {
+
+    text-align : center  ;
+
+}
+
+
+/* mini photos ( small , all the same size , like lurasey ) */
+
+.grid {
+
+    display               : grid                                       ;
+    grid-template-columns : repeat( auto-fill, minmax( 160px, 1fr ) )  ;
+    padding               : 100px max( 40px, calc( 50% - 660px ) )     ;
+    background            : #262626                                  ;
+
+}
+
+.grid .photo {
+
+    aspect-ratio : 7 / 8      ;
+    background   : #333333  ;
+
+}
+
+
+/* fade in : text comes up from below when it scrolls into view ( photos.js , like lurasey ) */
+
+.reveal {
+
+    opacity    : 0                                           ;
+    translate  : 0 30px                                      ;
+    transition : opacity 1s ease-out, translate 1s ease-out  ;
+
+}
+
+.reveal.shown {
+
+    opacity   : 1    ;
+    translate : 0 0  ;
+
+}
+
+/* gallery : the new photo fades in on top of the old one in 0.5s ( like lurasey , photos.js ) */
+
+.gallery .main .photo.in {
+
+    opacity : 1  ;
+
+}
+
+
+/* footer */
+
+footer {
+
+    position       : relative            ;
+    padding        : 80px 40px           ;
+    font-family    : 'Lato', sans-serif  ;
+    text-align     : center              ;
+    background     : #262626           ;
+    color          : #e0e0e0           ;
+    font-size      : 0.85rem             ;
+    letter-spacing : 3px                 ;
+
+}
+
+footer a {
+
+    color : inherit  ;
+
+}
+
+/* instagram in the left corner */
+
+footer .ig {
+
+    position  : absolute                          ;
+    top       : 50%                               ;
+    left      : max( 40px, calc( 50% - 660px ) )  ;
+    transform : translateY( -50% )                ;
+
+}
+
+
+/* mobile */
+
+@media screen and ( max-width : 768px ) {
+
+    /* phone : place names close under the photos */
+
+    .row figcaption {
+
+        margin-top : 10px  ;
+
+    }
+
+    /* phone : instagram above back home */
+
+    footer .ig {
+
+        position      : static  ;
+        display       : block   ;
+        margin-bottom : 20px    ;
+        transform     : none    ;
+
+    }
+
+    /* phone : title , button and then the photo under each other */
+
+    .hero {
+
+        display        : flex                  ;
+        flex-direction : column                ;
+        height         : auto                  ;
+        min-height     : 0                     ;
+        padding        : 100px 20px 60px 20px  ;
+        box-sizing     : border-box            ;
+
+    }
+
+    .hero-text {
+
+        position : static  ;
+        gap      : 50px    ;
+        margin   : 0       ;
+        padding  : 0       ;
+
+    }
+
+    .hero-photo {
+
+        order      : 2       ;
+        position   : static  ;
+        width      : 100%    ;
+        height     : auto    ;
+        margin-top : 50px    ;
+        transform  : none    ;
+
+    }
+
+    .cover {
+
+        display        : flex                 ;
+        flex-direction : column               ;
+        height         : auto                 ;
+        min-height     : 0                    ;
+        padding        : 80px 20px 60px 20px  ;
+
+    }
+
+    .cover h2 {
+
+        position  : static  ;
+        transform : none    ;
+
+    }
+
+    .cover-back {
+
+        position   : static  ;
+        margin-top : 20px    ;
+
+    }
+
+    .cover-photo {
+
+        order      : 2       ;
+        position   : static  ;
+        width      : 100%    ;
+        height     : auto    ;
+        margin-top : 40px    ;
+        transform  : none    ;
+
+    }
+
+    .hero-text h1,
+    .cover h2 {
+
+        font-size : 2.6rem  ;
+
+    }
+
+    .cover h2 {
+
+        left : 20px  ;
+
+    }
+
+    .words,
+    .story-inner {
+
+        grid-template-columns : 1fr        ;
+        gap                   : 50px       ;
+        padding               : 80px 20px  ;
+
+    }
+
+    .story {
+
+        padding : 0  ;
+
+    }
+
+    .row {
+
+        grid-template-columns : repeat( 2, 1fr )  ;
+        gap                   : 20px              ;
+        padding               : 0 20px 80px 20px  ;
+
+    }
+
+    .gallery {
+
+        grid-template-columns : 1fr     ;
+        gap                   : 20px    ;
+        padding               : 0 20px  ;
+
+    }
+
+    .thumbs {
+
+        display : none  ;
+
+    }
+
+    .gallery .counter {
+
+        justify-self  : center  ;
+        padding-right : 0       ;
+        text-align    : center  ;
+
+    }
+
+    .slide,
+    .gallery .main .photo {
+
+        height : 60vh  ;
+
+    }
+
+    .grid {
+
+        grid-template-columns : repeat( 3, 1fr )  ;
+        padding               : 60px 20px         ;
+
+    }
+
+}
