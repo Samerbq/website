@@ -1,0 +1,46 @@
+/* fonts ( free look-alikes of the ones lurasey uses : lato = titles , crimson pro = text ) */
+
+@font-face {
+
+    font-family  : 'Lato'                                              ;
+    font-weight  : 300                                                 ;
+    src          : url( '../fonts/lato-300.woff2' ) format( 'woff2' )  ;
+    font-display : swap                                                ;
+
+}
+
+@font-face {
+
+    font-family  : 'Lato'                                              ;
+    font-weight  : 400                                                 ;
+    src          : url( '../fonts/lato-400.woff2' ) format( 'woff2' )  ;
+    font-display : swap                                                ;
+
+}
+
+@font-face {
+
+    font-family  : 'Lato'                                              ;
+    font-weight  : 700                                                 ;
+    src          : url( '../fonts/lato-700.woff2' ) format( 'woff2' )  ;
+    font-display : swap                                                ;
+
+}
+
+@font-face {
+
+    font-family  : 'Crimson Pro'                                              ;
+    font-weight  : 300                                                        ;
+    src          : url( '../fonts/crimson-pro-300.woff2' ) format( 'woff2' )  ;
+    font-display : swap                                                       ;
+
+}
+
+@font-face {
+
+    font-family  : 'Crimson Pro'                                              ;
+    font-weight  : 400                                                        ;
+    src          : url( '../fonts/crimson-pro-400.woff2' ) format( 'woff2' )  ;
+    font-display : swap                                                       ;
+
+}
