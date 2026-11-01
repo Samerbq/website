@@ -18,12 +18,12 @@ updateTime()
 // floating links
 
 const LINKS = [
-    { label : 'about',   url : 'about.html'   },
-    { label : 'faq',     url : 'faq.html'     },
-    { label : 'blog',    url : 'blog.html'    },
-    { label : 'resume',  url : 'resume.html'  },
-    { label : 'contact', url : 'contact.html' },
-    { label : 'links',   url : 'links.html'   }
+    { label : 'about',   url : 'about'   },
+    { label : 'faq',     url : 'faq'     },
+    { label : 'blog',    url : 'blog'    },
+    { label : 'resume',  url : 'resume'  },
+    { label : 'contact', url : 'contact' },
+    { label : 'links',   url : 'links'   }
 ]
 
 const floatingLinks = []
