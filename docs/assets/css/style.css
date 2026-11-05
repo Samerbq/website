@@ -306,6 +306,22 @@ body.dark-theme .item {
 }
 
 
+/* dark mode : a photo fades in once it is fully loaded ( theme.js ) , no half drawn photo on reload */
+
+html.dark-theme .left-img {
+
+    opacity    : 0                  ;
+    transition : opacity 0.3s ease  ;
+
+}
+
+html.dark-theme .left-img.loaded {
+
+    opacity : 1  ;
+
+}
+
+
 /* animations on low ( motion.js ) */
 
 body.low-motion .item {
