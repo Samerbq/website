@@ -214,9 +214,8 @@ h1 {
 
 }
 
-.stack-container.open .item:nth-child( 1 ) { transform : translate( 26px, -192px ) rotate( 6deg ) ; }
-.stack-container.open .item:nth-child( 2 ) { transform : translate( 16px, -128px ) rotate( 4deg ) ; }
-.stack-container.open .item:nth-child( 3 ) { transform : translate(  6px,  -64px ) rotate( 2deg ) ; }
+.stack-container.open .item:nth-child( 1 ) { transform : translate( 16px, -128px ) rotate( 4deg ) ; }
+.stack-container.open .item:nth-child( 2 ) { transform : translate(  6px,  -64px ) rotate( 2deg ) ; }
 
 
 /* buttons ( dark mode + line up ) */
@@ -263,6 +262,15 @@ h1 {
 
 
 /* dark mode */
+
+/* set in the head by theme.js -> the page is dark from the very first frame ( no white flash ) */
+
+html.dark-theme {
+
+    background-color : #121212  ;
+    color-scheme     : dark       ;
+
+}
 
 body.dark-theme {
 

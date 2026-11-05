@@ -7,6 +7,9 @@ function toggleDarkMode() {
     const isDark = document.body.classList.contains( 'dark-theme' )
     localStorage.setItem( 'theme', isDark ? 'dark' : 'light' )
 
+    // page background ( set early by theme.js ) follows along
+    document.documentElement.classList.toggle( 'dark-theme', isDark )
+
     updateDarkModeBtn()
 }
 
