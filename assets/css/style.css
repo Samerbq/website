@@ -263,7 +263,8 @@ h1 {
 
 /* dark mode */
 
-/* set in the head by theme.js -> the page is dark from the very first frame ( no white flash ) */
+/* html.dark-theme is set in the head by theme.js , body.dark-theme by darkmode.js at the end of the page
+   -> both are listed so everything is dark from the very first frame ( no white flash ) */
 
 html.dark-theme {
 
@@ -272,6 +273,7 @@ html.dark-theme {
 
 }
 
+html.dark-theme body,
 body.dark-theme {
 
     background-color : #121212 !important  ;
@@ -279,6 +281,10 @@ body.dark-theme {
 
 }
 
+html.dark-theme a,
+html.dark-theme #darkModeBtn,
+html.dark-theme #lineUpBtn,
+html.dark-theme #motionBtn,
 body.dark-theme a,
 body.dark-theme #darkModeBtn,
 body.dark-theme #lineUpBtn,
@@ -288,6 +294,8 @@ body.dark-theme #motionBtn {
 
 }
 
+html.dark-theme .folder-trigger,
+html.dark-theme .item,
 body.dark-theme .folder-trigger,
 body.dark-theme .item {
 
