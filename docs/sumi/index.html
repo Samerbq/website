@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sumi - write</title>
+
+    <meta property="og:title"        content="sumi - write">
+    <meta property="og:description"  content="&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;">
+    <meta property="og:image"        content="https://samerbq.com/sumi/img/preview.jpg?v=1">
+    <meta property="og:image:width"  content="600">
+    <meta property="og:image:height" content="600">
+    <meta property="og:url"          content="https://samerbq.com/sumi/">
+    <meta property="og:type"         content="website">
+    <meta name="twitter:card"        content="summary">
+
+    <script>try { if ( localStorage.getItem( 'sumi-theme' ) === 'ink' ) document.documentElement.dataset.theme = 'ink' } catch ( e ) {}</script>
+
+    <link rel="icon"       href="img/logo/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com"    crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&family=JetBrains+Mono:wght@400&display=swap">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+<body class="intro">
+
+    <nav class="bar">
+
+        <a href="index.html" class="brand"><img src="img/logo/bol.png" alt=""><span>sumi</span></a>
+
+        <div class="bar-links">
+            <a href="#index"  >Index</a>
+            <a href="#margins">Margins</a>
+            <a href="#archive">Archive</a>
+            <button class="open-search">Search</button>
+            <button class="ink-toggle" aria-label="ink mode"><span></span></button>
+        </div>
+
+    </nav>
+
+    <div class="search" data-lenis-prevent>
+
+        <button class="search-close" aria-label="close"></button>
+
+        <input class="search-input" type="text" placeholder="Search the journal" spellcheck="false">
+
+        <div class="search-results"></div>
+
+    </div>
+
+    <main>
+
+        <header class="hero">
+
+            <span class="hero-mark">
+                <img  class="hero-logo"        src="img/logo/sumi-base.png"      alt="sumi">
+                <img  class="hero-logo ink"    src="img/logo/sumi-base-wit.png"  alt=""    >
+                <span class="dot-hit"></span>
+                <img  class="hero-black"       src="img/logo/sumi-dot-black.png" alt=""    >
+                <img  class="hero-black ink"   src="img/logo/sumi-dot-wit.png"   alt=""    >
+                <img  class="hero-dot"         src="img/logo/sumi-dot.png"       alt=""    >
+            </span>
+
+            <p class="hero-line">A journal of <em>small</em> thoughts, written <em>slowly</em>.</p>
+
+        </header>
+
+        <section class="index" id="index">
+
+            <h2>Index</h2>
+
+            <div class="rows"></div>
+
+            <div class="peek">
+                <p class="peek-text"></p>
+            </div>
+
+        </section>
+
+        <section class="margins" id="margins">
+
+            <div class="margins-head">
+                <h2>Margins</h2>
+                <p>Sticky notes. Short thoughts that did not need a whole page.</p>
+            </div>
+
+            <div class="strip">
+                <div class="track"></div>
+            </div>
+
+        </section>
+
+        <section class="archive" id="archive">
+
+            <h2>Archive</h2>
+
+            <div class="years"></div>
+
+        </section>
+
+        <section class="space"></section>
+
+    </main>
+
+    <footer>
+
+        <img class="foot-logo paper" src="img/logo/sumi-wit.png" alt="sumi">
+        <img class="foot-logo ink"   src="img/logo/sumi.png"     alt=""    >
+
+    </footer>
+
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="assets/js/journal.js"                             ></script>
+    <script src="assets/js/main.js"                                ></script>
+
+</body>
+</html>

@@ -14,7 +14,17 @@ const cols = [ ...document.querySelectorAll( '.col' ) ]
 
 let galleryX = 0
 let targetX  = 0
+let shiftX   = 0
+let aimX     = 0
 let lastTime = performance.now()
+
+window.addEventListener( 'pointermove', ( e ) => {
+
+    if ( e.pointerType !== 'mouse'              ) return
+    if ( !e.target.closest( '.gallery .media' ) ) return
+
+    aimX = ( 0.5 - e.clientX / window.innerWidth ) * window.innerWidth * 0.12
+} )
 
 function mod( a, b ) {
     return ( ( a % b ) + b ) % b
@@ -27,6 +37,7 @@ function parallax( dt ) {
     if ( !home || y > home.offsetHeight ) return
 
     galleryX += ( targetX - galleryX ) * ( 1 - Math.pow( 0.88, dt ) )
+    shiftX   += ( aimX    - shiftX   ) * ( 1 - Math.pow( 0.96, dt ) )
 
     const width = cols[ 0 ].offsetWidth
     const pitch = width * 372 / 362
@@ -35,7 +46,7 @@ function parallax( dt ) {
 
     cols.forEach( ( col, i ) => {
 
-        const x = mod( i * pitch - start + galleryX + pitch, total ) - pitch
+        const x = mod( i * pitch - start + galleryX + shiftX + pitch, total ) - pitch
 
         col.style.transform = 'translate3d( ' + x + 'px, ' + ( -y * Number( col.dataset.speed ) ) + 'px, 0 )'
     } )

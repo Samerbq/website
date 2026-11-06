@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sumi - write</title>
+
+    <meta property="og:title"        content="sumi - write">
+    <meta property="og:description"  content="&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;&#10240;">
+    <meta property="og:image"        content="https://samerbq.com/sumi/img/preview.jpg?v=1">
+    <meta property="og:image:width"  content="600">
+    <meta property="og:image:height" content="600">
+    <meta property="og:url"          content="https://samerbq.com/sumi/">
+    <meta property="og:type"         content="website">
+    <meta name="twitter:card"        content="summary">
+
+    <script>try { if ( localStorage.getItem( 'sumi-theme' ) === 'ink' ) document.documentElement.dataset.theme = 'ink' } catch ( e ) {}</script>
+
+    <link rel="icon"       href="img/logo/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com"    crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&family=JetBrains+Mono:wght@400&display=swap">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+<body class="intro page-entry">
+
+    <div class="progress"></div>
+
+    <nav class="bar">
+
+        <a href="index.html" class="brand"><img src="img/logo/bol.png" alt=""><span>sumi</span></a>
+
+        <div class="bar-links">
+            <a href="index.html#index"  >Index</a>
+            <a href="index.html#margins">Margins</a>
+            <a href="index.html#archive">Archive</a>
+            <button class="open-search">Search</button>
+            <button class="ink-toggle" aria-label="ink mode"><span></span></button>
+        </div>
+
+    </nav>
+
+    <div class="search" data-lenis-prevent>
+
+        <button class="search-close" aria-label="close"></button>
+
+        <input class="search-input" type="text" placeholder="Search the journal" spellcheck="false">
+
+        <div class="search-results"></div>
+
+    </div>
+
+    <main>
+
+        <header class="entry-head">
+
+            <p  class="entry-meta"></p>
+            <h1 class="entry-title"></h1>
+            <p  class="entry-sub"></p>
+
+        </header>
+
+        <div class="entry">
+
+            <aside class="toc">
+                <p class="toc-label">Contents</p>
+            </aside>
+
+            <article class="entry-body"></article>
+
+        </div>
+
+        <div class="next">
+            <span class="next-label">Next entry</span>
+            <a    class="next-title" href="#"></a>
+        </div>
+
+        <div class="peek">
+            <p class="peek-text"></p>
+        </div>
+
+    </main>
+
+    <footer>
+
+        <img class="foot-logo paper" src="img/logo/sumi-wit.png" alt="sumi">
+        <img class="foot-logo ink"   src="img/logo/sumi.png"     alt=""    >
+
+    </footer>
+
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="assets/js/journal.js"                             ></script>
+    <script src="assets/js/main.js"                                ></script>
+
+</body>
+</html>
