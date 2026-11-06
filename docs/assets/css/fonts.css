@@ -44,3 +44,12 @@
     font-display : swap                                                       ;
 
 }
+
+@font-face {
+
+    font-family  : 'DM Serif Display'                                              ;
+    font-weight  : 400                                                             ;
+    src          : url( '../fonts/dm-serif-display-400.woff2' ) format( 'woff2' )  ;
+    font-display : swap                                                            ;
+
+}

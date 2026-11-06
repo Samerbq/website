@@ -10,22 +10,38 @@
 
     <!-- link preview -->
     <meta name="description"        content="samer's corner of the internet - no frameworks , no trackers and no bloat.">
-    <meta property="og:title"       content="samer">
+    <meta property="og:title"       content="Samer Biqai">
     <meta property="og:description" content="samer's corner of the internet - no frameworks , no trackers and no bloat.">
-    <meta property="og:image"       content="https://samerbq.com/assets/img/image.jpg">
+    <meta property="og:image"       content="https://samerbq.com/assets/img/s-preview.jpg">
     <meta property="og:url"         content="https://samerbq.com/">
     <meta property="og:type"        content="website">
     <meta name="twitter:card"       content="summary">
 
+    <!-- google : name + photo in search results -->
+    <meta name="robots"             content="max-image-preview:large">
+    <script type="application/ld+json">
+    {
+        "@context"           : "https://schema.org",
+        "@type"              : "WebPage",
+        "name"               : "Samer Biqai",
+        "url"                : "https://samerbq.com/",
+        "primaryImageOfPage" : "https://samerbq.com/assets/img/s-preview.jpg",
+        "about"              : {
+            "@type"          : "Person",
+            "name"           : "Samer Biqai",
+            "url"            : "https://samerbq.com/",
+            "image"          : "https://samerbq.com/assets/img/s-preview.jpg"
+        }
+    }
+    </script>
+
 </head>
 <body>
 
-    <h1>samer</h1>
-
     <!-- live clock -->
-    <div id="clock"> central european time - Loading...</div>
+    <div data-nosnippet><div id="clock"> central european time - Loading...</div></div>
 
-    <img src="assets/img/image.jpg" alt="spider-man comic art" class="left-img" width="250" height="250">
+    <img src="assets/img/s.png" alt="S" class="left-img" width="250" height="283">
 
     <div class="content">
         <p> welcome to my corner of the internet - this site is built with pure vanilla html , css and js.</p>
@@ -34,7 +50,8 @@
 
     <div id="linkArea"></div>
 
-    <button id="darkModeBtn" onclick="toggleDarkMode()">dark mode</button>
+    <!-- data-nosnippet : google leaves this text out of the search result description -->
+    <div data-nosnippet><button id="darkModeBtn" onclick="toggleDarkMode()">dark mode</button></div>
 
     <!-- line up / float - turned off for now ( links are always lined up ) -->
     <!-- <button id="lineUpBtn"   onclick="toggleLineUp()"  >line up</button> -->
