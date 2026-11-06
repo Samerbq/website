@@ -1,0 +1,877 @@
+:root {
+
+    --u     : calc( 100vw / 1440 )                                ;
+    --sans  : 'Inter Tight', 'Helvetica Neue', Arial, sans-serif  ;
+    --serif : 'Instrument Serif', Garamond, Georgia, serif        ;
+    --logo  : 'Bodoni Moda', 'Didot', Georgia, serif              ;
+    --ease  : cubic-bezier( 0.16, 1, 0.3, 1 )                     ;
+
+}
+
+*,
+*::before,
+*::after {
+
+    box-sizing : border-box  ;
+    margin     : 0           ;
+    padding    : 0           ;
+
+}
+
+html.lenis,
+html.lenis body {
+
+    height : auto  ;
+
+}
+
+.lenis.lenis-stopped {
+
+    overflow : hidden  ;
+
+}
+
+body {
+
+    font-family            : var( --sans )  ;
+    font-weight            : 400            ;
+    color                  : #000000        ;
+    background             : #ffffff        ;
+    -webkit-font-smoothing : antialiased    ;
+    overflow-x             : hidden         ;
+
+}
+
+a {
+
+    color           : inherit  ;
+    text-decoration : none     ;
+
+}
+
+button {
+
+    font       : inherit  ;
+    color      : inherit  ;
+    background : none     ;
+    border     : none     ;
+    cursor     : pointer  ;
+
+}
+
+
+* {
+
+    -webkit-tap-highlight-color : transparent  ;
+
+}
+
+
+.media,
+.menu-media {
+
+    user-select       : none  ;
+    -webkit-user-drag : none  ;
+
+}
+
+
+.navbar {
+
+    position       : fixed       ;
+    top            : 0           ;
+    left           : 0           ;
+    right          : 0           ;
+    z-index        : 60          ;
+    display        : flex        ;
+    align-items    : center      ;
+    padding        : 18px 24px   ;
+    font-size      : 14px        ;
+    font-weight    : 400         ;
+    letter-spacing : 0.01em      ;
+    mix-blend-mode : difference  ;
+    color          : #ffffff     ;
+
+}
+
+.nav-toggle {
+
+    display     : flex     ;
+    align-items : center   ;
+    gap         : 10px     ;
+    padding     : 10px 0   ;
+    margin      : -10px 0  ;
+
+}
+
+.nav-links {
+
+    position : absolute  ;
+    left     : 85%       ;
+    display  : flex      ;
+    gap      : 6px       ;
+
+}
+
+.nav-links a:hover,
+.nav-toggle:hover span:not( .plus ) {
+
+    text-decoration       : underline  ;
+    text-underline-offset : 3px        ;
+
+}
+
+
+.plus {
+
+    position : relative  ;
+    width    : 16px      ;
+    height   : 16px      ;
+
+}
+
+.plus::before,
+.plus::after {
+
+    content    : ''            ;
+    position   : absolute      ;
+    top        : 50%           ;
+    left       : 0             ;
+    width      : 100%          ;
+    height     : 1px           ;
+    background : currentColor  ;
+
+}
+
+.plus::after {
+
+    transform : rotate( 90deg )  ;
+
+}
+
+
+.menu {
+
+    position   : fixed                                                              ;
+    inset      : 0                                                                  ;
+    z-index    : 70                                                                 ;
+    overflow-y : auto                                                               ;
+    background : var( --bg, #ce8fae )                                               ;
+    opacity    : 0                                                                  ;
+    visibility : hidden                                                             ;
+    transition : opacity 0.5s var( --ease ), visibility 0.5s, background 0.5s ease  ;
+
+}
+
+.menu.open {
+
+    opacity    : 1        ;
+    visibility : visible  ;
+
+}
+
+
+.menu-close {
+
+    position : fixed  ;
+    top      : 18px   ;
+    right    : 24px   ;
+    width    : 20px   ;
+    height   : 20px   ;
+    z-index  : 4      ;
+
+}
+
+.menu-close::before,
+.menu-close::after {
+
+    content    : ''               ;
+    position   : absolute         ;
+    top        : 50%              ;
+    left       : 0                ;
+    width      : 100%             ;
+    height     : 1.5px            ;
+    background : #000000          ;
+    transform  : rotate( 45deg )  ;
+
+}
+
+.menu-close::after {
+
+    transform : rotate( -45deg )  ;
+
+}
+
+
+.menu-media {
+
+    position  : fixed                     ;
+    top       : 50%                       ;
+    right     : calc( 120 * var( --u ) )  ;
+    width     : calc( 340 * var( --u ) )  ;
+    height    : calc( 510 * var( --u ) )  ;
+    transform : translateY( -50% )        ;
+    overflow  : hidden                    ;
+    z-index   : 2                         ;
+
+}
+
+
+.menu-layer {
+
+    position   : absolute                                                ;
+    inset      : 0                                                       ;
+    background : color-mix( in srgb, var( --c, #ce8fae ) 78%, #000000 )  ;
+    clip-path  : inset( 100% 0 0 0 )                                     ;
+
+}
+
+.menu-layer.on {
+
+    clip-path  : inset( 0 0 0 0 )              ;
+    transition : clip-path 0.9s var( --ease )  ;
+
+}
+
+.menu-layer img {
+
+    width      : 100%           ;
+    height     : 100%           ;
+    object-fit : cover          ;
+    transform  : scale( 1.15 )  ;
+
+}
+
+.menu-layer.on img {
+
+    transform  : none                          ;
+    transition : transform 1.3s var( --ease )  ;
+
+}
+
+
+.menu-list {
+
+    position       : relative                               ;
+    display        : flex                                   ;
+    flex-direction : column                                 ;
+    align-items    : flex-start                             ;
+    padding        : calc( 30 * var( --u ) ) 0 40vh 32.5vw  ;
+
+}
+
+.menu-name {
+
+    position    : relative                                                  ;
+    z-index     : 1                                                         ;
+    font-family : var( --serif )                                            ;
+    font-size   : max( 52px, calc( 112 * var( --u ) ) )                     ;
+    line-height : 1.3                                                       ;
+    white-space : nowrap                                                    ;
+    cursor      : default                                                   ;
+    opacity     : 0                                                         ;
+    transform   : translateY( 50px )                                        ;
+    transition  : opacity 0.6s var( --ease ), transform 0.8s var( --ease )  ;
+
+}
+
+.menu.open .menu-name {
+
+    opacity   : 1     ;
+    transform : none  ;
+
+}
+
+.menu.open .menu-name.active {
+
+    z-index   : 3                                       ;
+    transform : translateX( calc( -70 * var( --u ) ) )  ;
+
+}
+
+
+.home {
+
+    position : relative                   ;
+    height   : calc( 1300 * var( --u ) )  ;
+    overflow : hidden                     ;
+
+}
+
+.home-logo {
+
+    position : absolute                  ;
+    top      : calc( 270 * var( --u ) )  ;
+    left     : calc( 259 * var( --u ) )  ;
+    display  : flex                      ;
+    gap      : calc( 30 * var( --u ) )   ;
+    z-index  : 1                         ;
+
+}
+
+.logo {
+
+    font-family    : var( --logo )                                             ;
+    font-weight    : 900                                                       ;
+    font-size      : calc( 220 * var( --u ) )                                  ;
+    line-height    : 0.8                                                       ;
+    letter-spacing : -0.04em                                                   ;
+    transition     : opacity 1.2s var( --ease ), transform 1.4s var( --ease )  ;
+
+}
+
+.tagline {
+
+    width          : calc( 300 * var( --u ) )              ;
+    font-size      : max( 16px, calc( 24 * var( --u ) ) )  ;
+    font-weight    : 300                                   ;
+    line-height    : 1.3                                   ;
+    letter-spacing : 0.01em                                ;
+    min-height     : 2.6em                                 ;
+
+}
+
+
+.tagline .cursor {
+
+    display   : inline-block                    ;
+    width     : 0.5em                           ;
+    animation : blink 0.8s steps( 1 ) infinite  ;
+
+}
+
+@keyframes blink {
+
+    50% {
+
+        opacity : 0  ;
+
+    }
+
+}
+
+body.intro .logo {
+
+    opacity   : 0                   ;
+    transform : translateY( 30px )  ;
+
+}
+
+
+.gallery {
+
+    position     : absolute                        ;
+    inset        : calc( 270 * var( --u ) ) 0 0 0  ;
+    z-index      : 2                               ;
+    user-select  : none                            ;
+    touch-action : pan-y                           ;
+
+}
+
+.col {
+
+    position    : absolute                      ;
+    top         : 0                             ;
+    left        : 0                             ;
+    width       : calc( 362 * var( --u ) )      ;
+    will-change : transform                     ;
+    transition  : translate 1.6s var( --ease )  ;
+
+}
+
+
+.col:nth-child( 5n + 1 ) {
+
+    top              : 0      ;
+    transition-delay : 0.15s  ;
+
+}
+
+.col:nth-child( 5n + 2 ) {
+
+    top              : calc( 324 * var( --u ) )  ;
+    transition-delay : 0.30s                     ;
+
+}
+
+.col:nth-child( 5n + 3 ) {
+
+    top              : calc( 137 * var( --u ) )  ;
+    transition-delay : 0.05s                     ;
+
+}
+
+.col:nth-child( 5n + 4 ) {
+
+    top              : calc( 324 * var( --u ) )  ;
+    transition-delay : 0.40s                     ;
+
+}
+
+.col:nth-child( 5n + 5 ) {
+
+    top              : 0      ;
+    transition-delay : 0.20s  ;
+
+}
+
+
+body.intro .col {
+
+    translate : 0 100vh  ;
+
+}
+
+
+.item {
+
+    display       : block                    ;
+    margin-bottom : calc( 10 * var( --u ) )  ;
+    cursor        : default                  ;
+
+}
+
+.media {
+
+    position   : relative                  ;
+    width      : 100%                      ;
+    height     : calc( 483 * var( --u ) )  ;
+    background : #e6e6e6                   ;
+    overflow   : hidden                    ;
+
+}
+
+
+.media img {
+
+    position   : absolute  ;
+    inset      : 0         ;
+    width      : 100%      ;
+    height     : 100%      ;
+    object-fit : cover     ;
+
+}
+
+.item .media img {
+
+    opacity    : 0                  ;
+    transition : opacity 0.8s ease  ;
+
+}
+
+.item .media img.loaded {
+
+    opacity : 1  ;
+
+}
+
+.name {
+
+    display        : block   ;
+    padding-top    : 6px     ;
+    font-size      : 14px    ;
+    font-weight    : 400     ;
+    line-height    : 21px    ;
+    letter-spacing : 0.01em  ;
+
+}
+
+
+.strapline {
+
+    padding : calc( 140 * var( --u ) ) 24px calc( 180 * var( --u ) ) 24px  ;
+
+}
+
+.strapline p {
+
+    font-family    : var( --serif )                         ;
+    font-size      : max( 44px, calc( 112 * var( --u ) ) )  ;
+    line-height    : 0.98                                   ;
+    letter-spacing : -0.01em                                ;
+    max-width      : 15em                                   ;
+
+}
+
+
+.news {
+
+    padding           : 0 24px  ;
+    scroll-margin-top : 70px    ;
+
+}
+
+.news .slider:last-child {
+
+    margin-bottom : 0  ;
+
+}
+
+.news h2 {
+
+    font-family   : var( --serif )                         ;
+    font-weight   : 400                                    ;
+    font-size     : max( 52px, calc( 112 * var( --u ) ) )  ;
+    line-height   : 1                                      ;
+    margin-bottom : calc( 40 * var( --u ) )                ;
+
+}
+
+
+.slider {
+
+    margin   : 0 -24px calc( 120 * var( --u ) ) -24px  ;
+    overflow : hidden                                  ;
+
+}
+
+.track {
+
+    display     : flex                          ;
+    align-items : flex-end                      ;
+    gap         : calc( 10 * var( --u ) )       ;
+    transition  : transform 0.8s var( --ease )  ;
+
+}
+
+.track .slide img {
+
+    opacity    : 0                  ;
+    transition : opacity 0.6s ease  ;
+
+}
+
+.track .slide img.loaded {
+
+    opacity : 1  ;
+
+}
+
+.track .slide {
+
+    flex-shrink : 0                         ;
+    width       : auto                      ;
+    height      : calc( 483 * var( --u ) )  ;
+
+}
+
+.slider-nav {
+
+    display         : flex    ;
+    justify-content : center  ;
+    align-items     : center  ;
+    gap             : 40px    ;
+    margin-top      : 18px    ;
+    font-size       : 14px    ;
+    letter-spacing  : 0.01em  ;
+
+}
+
+.slider-nav button {
+
+    font-size : 14px     ;
+    padding   : 6px 4px  ;
+
+}
+
+.slider-nav button:hover {
+
+    text-decoration       : underline  ;
+    text-underline-offset : 3px        ;
+
+}
+
+.slider .counter {
+
+    min-width            : 60px          ;
+    text-align           : center        ;
+    font-variant-numeric : tabular-nums  ;
+
+}
+
+
+.page-all {
+
+    overflow : hidden  ;
+
+}
+
+.nav-links .current {
+
+    text-decoration       : underline  ;
+    text-underline-offset : 3px        ;
+
+}
+
+.all {
+
+    position     : fixed            ;
+    inset        : 0                ;
+    overflow     : hidden           ;
+    touch-action : none             ;
+    user-select  : none             ;
+    cursor       : default          ;
+    opacity      : 0                ;
+    transition   : opacity 1s ease  ;
+
+}
+
+.all.shown {
+
+    opacity : 1  ;
+
+}
+
+.all-cell {
+
+    position        : absolute                  ;
+    top             : 0                         ;
+    left            : 0                         ;
+    width           : calc( 259 * var( --u ) )  ;
+    height          : calc( 330 * var( --u ) )  ;
+    display         : flex                      ;
+    align-items     : center                    ;
+    justify-content : center                    ;
+    will-change     : transform                 ;
+
+}
+
+.all-media {
+
+    position : relative                  ;
+    width    : calc( 144 * var( --u ) )  ;
+    overflow : hidden                    ;
+
+}
+
+.all-media img {
+
+    position       : absolute           ;
+    inset          : 0                  ;
+    width          : 100%               ;
+    height         : 100%               ;
+    object-fit     : cover              ;
+    opacity        : 0                  ;
+    transition     : opacity 0.6s ease  ;
+    pointer-events : none               ;
+
+}
+
+.all-media img.loaded {
+
+    opacity : 1  ;
+
+}
+
+
+.film {
+
+    position : relative  ;
+    height   : 80vh      ;
+
+}
+
+.film-stage {
+
+    position : relative  ;
+    height   : 100%      ;
+    overflow : hidden    ;
+
+}
+
+.film-stage canvas {
+
+    display : block  ;
+
+}
+
+
+.film-ring {
+
+    position       : absolute                                     ;
+    top            : -60px                                        ;
+    left           : -60px                                        ;
+    width          : 120px                                        ;
+    height         : 120px                                        ;
+    border         : 1px solid #ffffff                            ;
+    border-radius  : 50%                                          ;
+    mix-blend-mode : difference                                   ;
+    pointer-events : none                                         ;
+    opacity        : 0                                            ;
+    scale          : 0.6                                          ;
+    transition     : opacity 0.3s ease, scale 0.5s var( --ease )  ;
+
+}
+
+.film-ring.on {
+
+    opacity : 1  ;
+    scale   : 1  ;
+
+}
+
+.film-ring span {
+
+    position       : absolute                                  ;
+    top            : calc( 100% + 10px )                       ;
+    left           : 50%                                       ;
+    translate      : -50% 0                                    ;
+    font-family    : ui-monospace, Menlo, Consolas, monospace  ;
+    font-size      : 11px                                      ;
+    letter-spacing : 0.1em                                     ;
+    color          : #ffffff                                   ;
+    transition     : opacity 0.2s ease                         ;
+
+}
+
+
+footer {
+
+    position        : relative                                ;
+    height          : max( 520px, calc( 900 * var( --u ) ) )  ;
+    display         : flex                                    ;
+    flex-direction  : column                                  ;
+    justify-content : space-between                           ;
+    padding         : 90px 24px 24px 24px                     ;
+    background      : #000000                                 ;
+    color           : #ffffff                                 ;
+    overflow        : hidden                                  ;
+
+}
+
+.footer-top {
+
+    display         : flex           ;
+    justify-content : space-between  ;
+    font-size       : 24px           ;
+    font-weight     : 300            ;
+
+}
+
+.footer-links {
+
+    display        : flex    ;
+    flex-direction : column  ;
+    gap            : 4px     ;
+    font-size      : 14px    ;
+    font-weight    : 400     ;
+    text-align     : right   ;
+
+}
+
+.footer-links a:hover {
+
+    text-decoration       : underline  ;
+    text-underline-offset : 3px        ;
+
+}
+
+.footer-logo {
+
+    font-family    : var( --logo )             ;
+    font-weight    : 900                       ;
+    font-size      : calc( 430 * var( --u ) )  ;
+    line-height    : 0.75                      ;
+    letter-spacing : -0.05em                   ;
+    margin-left    : -0.04em                   ;
+
+}
+
+
+@media ( max-width : 768px ) {
+
+    :root {
+
+        --u : calc( 100vw / 760 )  ;
+
+    }
+
+    .nav-links {
+
+        left  : auto  ;
+        right : 24px  ;
+
+    }
+
+    .home {
+
+        height : calc( 1500 * var( --u ) )  ;
+
+    }
+
+    .home-logo {
+
+        left           : 24px    ;
+        flex-direction : column  ;
+        gap            : 14px    ;
+
+    }
+
+    .gallery {
+
+        top : calc( 560 * var( --u ) )  ;
+
+    }
+
+    .all-cell {
+
+        width  : calc( 330 * var( --u ) )  ;
+        height : calc( 420 * var( --u ) )  ;
+
+    }
+
+    .all-media {
+
+        width : calc( 200 * var( --u ) )  ;
+
+    }
+
+    .footer-top {
+
+        font-size : 18px  ;
+
+    }
+
+    .menu-list {
+
+        padding-left : 24px  ;
+
+    }
+
+    .menu.open .menu-name.active {
+
+        transform : translateX( -12px )  ;
+
+    }
+
+    .menu-media {
+
+        top       : auto  ;
+        bottom    : 24px  ;
+        right     : 24px  ;
+        width     : 38vw  ;
+        height    : 57vw  ;
+        transform : none  ;
+
+    }
+
+    .film {
+
+        height : 62vh  ;
+
+    }
+
+    footer {
+
+        height      : 380px  ;
+        padding-top : 80px   ;
+
+    }
+
+    .footer-logo {
+
+        font-size : 29vw  ;
+
+    }
+
+}
