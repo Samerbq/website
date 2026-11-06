@@ -667,7 +667,7 @@ body.intro .col {
 .film {
 
     position : relative  ;
-    height   : 80vh      ;
+    height   : 100vh     ;
 
 }
 
@@ -682,45 +682,6 @@ body.intro .col {
 .film-stage canvas {
 
     display : block  ;
-
-}
-
-
-.film-ring {
-
-    position       : absolute                                     ;
-    top            : -60px                                        ;
-    left           : -60px                                        ;
-    width          : 120px                                        ;
-    height         : 120px                                        ;
-    border         : 1px solid #ffffff                            ;
-    border-radius  : 50%                                          ;
-    mix-blend-mode : difference                                   ;
-    pointer-events : none                                         ;
-    opacity        : 0                                            ;
-    scale          : 0.6                                          ;
-    transition     : opacity 0.3s ease, scale 0.5s var( --ease )  ;
-
-}
-
-.film-ring.on {
-
-    opacity : 1  ;
-    scale   : 1  ;
-
-}
-
-.film-ring span {
-
-    position       : absolute                                  ;
-    top            : calc( 100% + 10px )                       ;
-    left           : 50%                                       ;
-    translate      : -50% 0                                    ;
-    font-family    : ui-monospace, Menlo, Consolas, monospace  ;
-    font-size      : 11px                                      ;
-    letter-spacing : 0.1em                                     ;
-    color          : #ffffff                                   ;
-    transition     : opacity 0.2s ease                         ;
 
 }
 
@@ -857,7 +818,7 @@ footer {
 
     .film {
 
-        height : 62vh  ;
+        height : 72vh  ;
 
     }
 

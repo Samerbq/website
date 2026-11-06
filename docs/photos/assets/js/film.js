@@ -200,10 +200,9 @@
                 if ( c.a < 0.5 ) discard ;
 
                 float grey = dot( c.rgb, vec3( 0.299, 0.587, 0.114 ) ) ;
-                float mid  = 1.0 - smoothstep( uFw * 0.47, uFw * 0.53, abs( vX - uCenter ) ) ;
-
+                float mid   = 1.0 - smoothstep( uFw * 0.47, uFw * 0.53, abs( vX - uCenter ) ) ;
                 float hover = ( 1.0 - smoothstep( uFw * 0.47, uFw * 0.53, abs( vX - uHover ) ) ) * uLens ;
-                vec3  col   = mix( vec3( grey ), c.rgb, max( mid * ( 1.0 - uLens ), hover ) * uColor ) ;
+                vec3  col   = mix( vec3( grey ), c.rgb, max( mid, hover ) * uColor ) ;
 
                 vec3  n     = normalize( vNormal ) ;
                 float light = 0.72 + 0.28 * abs( dot( n, normalize( vec3( 0.2, 0.5, 1.0 ) ) ) ) ;
@@ -220,63 +219,6 @@
     let height = 0
     let fw     = 0
 
-    const glassTarget = new THREE.WebGLRenderTarget( 1, 1, { samples : 4 } )
-
-    const glass = {
-        tScene    : { value : glassTarget.texture },
-        uRes      : { value : new THREE.Vector2( 1, 1 ) },
-        uMouse    : { value : new THREE.Vector2( -999, -999 ) },
-        uRadius   : { value : 60 },
-        uStrength : { value : 0 },
-    }
-
-    const glassScene  = new THREE.Scene()
-    const glassCamera = new THREE.OrthographicCamera( -1, 1, 1, -1, 0, 1 )
-
-    glassScene.add( new THREE.Mesh( new THREE.PlaneGeometry( 2, 2 ), new THREE.ShaderMaterial( {
-
-        uniforms   : glass,
-        blending   : THREE.NoBlending,
-        depthTest  : false,
-        depthWrite : false,
-
-        vertexShader : `
-            void main() {
-                gl_Position = vec4( position.xy, 0.0, 1.0 ) ;
-            }`,
-
-        fragmentShader : `
-            uniform sampler2D tScene ;
-            uniform vec2      uRes ;
-            uniform vec2      uMouse ;
-            uniform float     uRadius ;
-            uniform float     uStrength ;
-
-            vec4 look( vec2 px ) {
-                return texture2D( tScene, px / uRes ) ;
-            }
-
-            void main() {
-
-                vec2  p     = gl_FragCoord.xy ;
-                vec4  plain = look( p ) ;
-                vec2  d     = p - uMouse ;
-                float r     = length( d ) / uRadius ;
-
-                if ( r >= 1.0 || uStrength < 0.001 ) { gl_FragColor = plain ; return ; }
-
-                float bulge = ( 1.0 - r * r ) * 0.14 * uStrength ;
-                vec2  dir   = d / max( length( d ), 0.0001 ) ;
-                float bend  = smoothstep( 0.6, 1.0, r ) * 0.10 * uRadius * uStrength ;
-
-                vec4  lens  = look( p - d * bulge - dir * bend ) ;
-
-                float m = 1.0 - smoothstep( 1.0 - 1.5 / uRadius, 1.0, r ) ;
-
-                gl_FragColor = mix( plain, lens, m ) ;
-            }`,
-    } ) ) )
-
     function resize() {
 
         width  = stage.clientWidth
@@ -284,11 +226,6 @@
         fw     = width < 768 ? width * 0.44 : width * 0.15
 
         renderer.setSize( width, height )
-
-        const dpr = renderer.getPixelRatio()
-
-        glassTarget.setSize( width * dpr, height * dpr )
-        glass.uRes.value.set( width * dpr, height * dpr )
 
         camera.aspect     = width / height
         camera.position.z = ( height / 2 ) / Math.tan( THREE.MathUtils.degToRad( 15 ) )
@@ -337,7 +274,7 @@
 
     setInterval( () => {
 
-        if ( visible && !ring.classList.contains( 'on' ) && performance.now() - touched > WAIT ) target = Math.round( target ) + 1
+        if ( visible && !over && performance.now() - touched > WAIT ) target = Math.round( target ) + 1
     }, WAIT )
 
     let dragging = false
@@ -382,62 +319,10 @@
 
     }, { passive : false } )
 
-    function frame( now ) {
-
-        const dt = Math.min( Math.max( ( now - time ) / 16.7, 0.1 ), 4 )
-
-        time = now
-
-        const y = window.scrollY
-        const d = y - lastY
-
-        lastY = y
-
-        if ( visible && d !== 0 ) {
-
-            target += d / ( fw * 0.9 )
-
-            moved()
-        }
-
-        const before = offset
-
-        offset += ( target - offset ) * ( 1 - Math.pow( 0.92, dt ) )
-        speed  += ( Math.abs( offset - before ) / dt - speed ) * ( 1 - Math.pow( 0.9, dt ) )
-
-        if ( visible ) {
-
-            uniforms.uOffset.value = offset
-            uniforms.uPhase.value  = offset * 0.35
-            uniforms.uAmp.value    = 1 + Math.min( speed * 18, 1.1 )
-            uniforms.uCenter.value = ( Math.round( offset ) - offset ) * fw
-            uniforms.uColor.value  = Math.max( 0, 1 - speed * 40 )
-
-            if ( glass.uStrength.value > 0.001 ) {
-                renderer.setRenderTarget( glassTarget )
-                renderer.render( scene, camera )
-                renderer.setRenderTarget( null )
-                renderer.render( glassScene, glassCamera )
-            }
-            else renderer.render( scene, camera )
-        }
-
-        requestAnimationFrame( frame )
-    }
-
-    requestAnimationFrame( frame )
-
-    const ring  = document.createElement( 'div' )
-    const label = document.createElement( 'span' )
-
-    ring.className = 'film-ring'
-    ring.appendChild ( label )
-    stage.appendChild( ring  )
-
-    let ringX  = 0
-    let ringY  = 0
     let mouseX = 0
     let mouseY = 0
+    let inside = false
+    let over   = false
 
     stage.addEventListener( 'pointermove', ( e ) => {
 
@@ -447,16 +332,10 @@
 
         mouseX = e.clientX - r.left
         mouseY = e.clientY - r.top
-
-        if ( !ring.classList.contains( 'on' ) ) {
-            ringX = mouseX
-            ringY = mouseY
-        }
-
-        ring.classList.add( 'on' )
+        inside = true
     } )
 
-    stage.addEventListener( 'pointerleave', () => ring.classList.remove( 'on' ) )
+    stage.addEventListener( 'pointerleave', () => inside = false )
 
     const point = new THREE.Vector3()
 
@@ -502,41 +381,56 @@
         return my >= Math.min( a, b ) && my <= Math.max( a, b ) ? best : null
     }
 
-    function follow() {
+    function hover() {
 
-        ringX += ( mouseX - ringX ) * 0.35
-        ringY += ( mouseY - ringY ) * 0.35
+        const x = inside ? onBand( mouseX, mouseY ) : null
 
-        ring.style.transform = 'translate( ' + ringX + 'px, ' + ringY + 'px )'
+        over = x !== null
 
-        const dpr = renderer.getPixelRatio()
+        if ( over ) uniforms.uHover.value = ( Math.floor( x / fw + offset + 0.5 ) - offset ) * fw
 
-        glass.uMouse.value.set( ringX * dpr, ( height - ringY ) * dpr )
-        glass.uRadius.value    = 60 * dpr * ( Number( getComputedStyle( ring ).scale ) || 1 )
-        glass.uStrength.value += ( ( ring.classList.contains( 'on' ) ? 1 : 0 ) - glass.uStrength.value ) * 0.2
+        uniforms.uLens.value += ( ( over ? 1 : 0 ) - uniforms.uLens.value ) * 0.3
+    }
 
-        const x  = ring.classList.contains( 'on' ) ? onBand( mouseX, mouseY ) : null
-        const on = x !== null
+    function frame( now ) {
 
-        if ( on ) {
+        const dt = Math.min( Math.max( ( now - time ) / 16.7, 0.1 ), 4 )
 
-            const under = Math.floor( x / fw + offset + 0.5 )
+        time = now
 
-            uniforms.uHover.value = ( under - offset ) * fw
-            label.textContent     = String( mod( under, FRAMES ) + 1 ).padStart( 2, '0' )
+        const y = window.scrollY
+        const d = y - lastY
+
+        lastY = y
+
+        if ( visible && d !== 0 ) {
+
+            target += d / ( fw * 0.9 )
+
+            moved()
         }
 
-        uniforms.uLens.value += ( ( on ? 1 : 0 ) - uniforms.uLens.value ) * 0.5
+        const before = offset
 
-        label.style.opacity = on ? 1 : 0
+        offset += ( target - offset ) * ( 1 - Math.pow( 0.92, dt ) )
+        speed  += ( Math.abs( offset - before ) / dt - speed ) * ( 1 - Math.pow( 0.9, dt ) )
 
-        requestAnimationFrame( follow )
+        if ( visible ) {
+
+            uniforms.uOffset.value = offset
+            uniforms.uPhase.value  = offset * 0.35
+            uniforms.uAmp.value    = 1 + Math.min( speed * 18, 1.1 )
+            uniforms.uCenter.value = ( Math.round( offset ) - offset ) * fw
+            uniforms.uColor.value  = Math.max( 0, 1 - speed * 40 )
+
+            hover()
+
+            renderer.render( scene, camera )
+        }
+
+        requestAnimationFrame( frame )
     }
 
-    function mod( a, b ) {
-        return ( ( a % b ) + b ) % b
-    }
-
-    requestAnimationFrame( follow )
+    requestAnimationFrame( frame )
 
 } )()
