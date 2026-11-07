@@ -301,7 +301,6 @@ document.querySelectorAll( 'a.row, .next-title' ).forEach( ( link ) => {
 const search  = document.querySelector( '.search'         )
 const input   = document.querySelector( '.search-input'   )
 const results = document.querySelector( '.search-results' )
-const opener  = document.querySelector( '.open-search'    )
 const closer  = document.querySelector( '.search-close'   )
 
 function mark( title, query ) {
@@ -343,8 +342,9 @@ function closeSearch() {
 }
 
 input.addEventListener ( 'input', find        )
-opener.addEventListener( 'click', openSearch  )
 closer.addEventListener( 'click', closeSearch )
+
+document.querySelectorAll( '.open-search' ).forEach( ( b ) => b.addEventListener( 'click', openSearch ) )
 
 document.addEventListener( 'keydown', ( e ) => {
 
@@ -359,10 +359,18 @@ document.addEventListener( 'keydown', ( e ) => {
 } )
 
 
+
+
 // ink mode
 
 const root = document.documentElement
 const ink  = document.querySelector( '.ink-toggle' )
+
+function label() {
+    ink.textContent = root.dataset.theme === 'ink' ? 'hiru' : 'yoru'
+}
+
+label()
 
 ink.addEventListener( 'click', () => {
 
@@ -372,6 +380,8 @@ ink.addEventListener( 'click', () => {
     else                                root.dataset.theme = 'ink'
 
     try { localStorage.setItem( 'sumi-theme', root.dataset.theme || 'paper' ) } catch ( e ) {}
+
+    label()
 
     setTimeout( () => root.classList.remove( 'theming' ), 700 )
 } )

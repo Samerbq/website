@@ -1,24 +1,24 @@
 :root {
 
     --u        : calc( 100vw / 1440 )                                 ;
-    --paper    : #f6f3ec                                              ;
-    --ink      : #141414                                              ;
-    --mute     : #8c867b                                              ;
-    --line     : #dcd6ca                                              ;
-    --gold     : #e9c46a                                              ;
-    --rust     : #c8553d                                              ;
+    --paper    : #f6f3ec                                            ;
+    --ink      : #141414                                            ;
+    --mute     : #8c867b                                            ;
+    --line     : #dcd6ca                                            ;
+    --gold     : #e9c46a                                            ;
+    --rust     : #c8553d                                            ;
     --sans     : 'Inter Tight', 'Helvetica Neue', Arial, sans-serif   ;
     --serif    : 'Instrument Serif', Garamond, Georgia, serif         ;
     --read     : 'Newsreader', Georgia, serif                         ;
     --mono     : 'JetBrains Mono', ui-monospace, Consolas, monospace  ;
     --ease     : cubic-bezier( 0.16, 1, 0.3, 1 )                      ;
-    --note-1   : #f2e3b3                                              ;
-    --note-2   : #efe6cf                                              ;
-    --note-fg  : #141414                                              ;
-    --shadow   : rgba( 20, 20, 20, 0.35 )                             ;
-    --code-bg  : #141414                                              ;
-    --code-fg  : #f6f3ec                                              ;
-    --code-dim : #5f5b54                                              ;
+    --note-1   : #f2e3b3                                            ;
+    --note-2   : #efe6cf                                            ;
+    --note-fg  : #141414                                            ;
+    --shadow   : rgba( 20, 20, 20, 0.35 )                           ;
+    --code-bg  : #141414                                            ;
+    --code-fg  : #f6f3ec                                            ;
+    --code-dim : #5f5b54                                            ;
 
 }
 
@@ -161,20 +161,43 @@ em {
 
 }
 
-.bar-links {
+
+.bar-right {
 
     display     : flex    ;
     align-items : center  ;
-    gap         : 22px    ;
+    gap         : 30px    ;
 
 }
 
+.ink-toggle {
 
-.bar-links a:hover,
-.open-search:hover {
+    font-family    : var( --serif )                                                             ;
+    font-style     : italic                                                                     ;
+    font-size      : 21px                                                                       ;
+    line-height    : 1                                                                          ;
+    padding-bottom : 2px                                                                        ;
+    background     : linear-gradient( var( --gold ), var( --gold ) ) 0 100% / 0% 2px no-repeat  ;
+    transition     : background-size 0.6s var( --ease )                                         ;
 
-    text-decoration       : underline  ;
-    text-underline-offset : 3px        ;
+}
+
+.ink-toggle:hover {
+
+    background-size : 100% 2px  ;
+
+}
+
+h2.open-search {
+
+    cursor     : pointer          ;
+    transition : color 0.3s ease  ;
+
+}
+
+h2.open-search:hover {
+
+    color : var( --rust )  ;
 
 }
 
@@ -503,6 +526,12 @@ h2 {
 
 }
 
+.year .hit:last-child {
+
+    border-bottom : none  ;
+
+}
+
 .year-list {
 
     display            : grid                                   ;
@@ -585,8 +614,8 @@ h2 {
 
 .search.open {
 
-    opacity    : 1                                        ;
-    visibility : visible                                  ;
+    opacity    : 1                                          ;
+    visibility : visible                                    ;
     transition : opacity 0.5s var( --ease ), visibility 0s  ;
 
 }
@@ -680,8 +709,8 @@ h2 {
 
 .empty {
 
-    text-transform : none   ;
-    font-size      : 13px   ;
+    text-transform : none  ;
+    font-size      : 13px  ;
 
 }
 
@@ -1139,31 +1168,6 @@ footer {
 
 }
 
-.ink-toggle {
-
-    display     : grid    ;
-    place-items : center  ;
-    width       : 18px    ;
-    height      : 18px    ;
-
-}
-
-.ink-toggle span {
-
-    width         : 14px                                                         ;
-    height        : 14px                                                         ;
-    border-radius : 50%                                                          ;
-    border        : 1px solid currentColor                                       ;
-    background    : linear-gradient( 90deg, currentColor 50%, transparent 50% )  ;
-    transition    : transform 0.9s var( --ease )                                 ;
-
-}
-
-[data-theme="ink"] .ink-toggle span {
-
-    transform : rotate( 180deg )  ;
-
-}
 
 html.theming *,
 html.theming *::before,
@@ -1182,16 +1186,10 @@ html.theming *::after {
 
     }
 
-    .bar-links a {
-
-        display : none  ;
-
-    }
-
 
     .margins-head {
 
-        flex-direction : column     ;
+        flex-direction : column      ;
         align-items    : flex-start  ;
         gap            : 16px        ;
 
@@ -1285,4 +1283,5 @@ html.theming *::after {
         font-size : 32px  ;
 
     }
+
 }
