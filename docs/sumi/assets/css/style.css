@@ -430,18 +430,13 @@ h2 {
 
 .strip {
 
-    overflow     : hidden  ;
-    cursor       : grab    ;
-    user-select  : none    ;
-    touch-action : pan-y   ;
+    overflow     : hidden   ;
+    cursor       : default  ;
+    user-select  : none     ;
+    touch-action : pan-y    ;
 
 }
 
-.strip.grabbing {
-
-    cursor : grabbing  ;
-
-}
 
 .track {
 

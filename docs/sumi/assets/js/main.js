@@ -1,3 +1,7 @@
+document.addEventListener( 'contextmenu', ( e ) => e.preventDefault() )
+document.addEventListener( 'dragstart',   ( e ) => e.preventDefault() )
+
+
 const lenis = window.Lenis ? new Lenis( { lerp : 0.09, wheelMultiplier : 0.9 } ) : null
 
 
@@ -233,7 +237,6 @@ if ( strip ) {
         dragX    = e.clientX
         speedX   = 0
 
-        strip.classList.add( 'grabbing' )
     } )
 
     window.addEventListener( 'pointermove', ( e ) => {
@@ -252,7 +255,6 @@ if ( strip ) {
         dragging  = false
         targetX  += speedX * 10
 
-        strip.classList.remove( 'grabbing' )
     }
 
     window.addEventListener( 'pointerup',     stopDrag )
