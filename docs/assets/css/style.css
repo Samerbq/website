@@ -252,6 +252,16 @@ h1 {
 
 }
 
+.back-corner {
+
+    position  : fixed  ;
+    bottom    : 20px   ;
+    left      : 20px   ;
+    font-size : 1rem   ;
+    z-index   : 9999   ;
+
+}
+
 #darkModeBtn:hover,
 #lineUpBtn:hover,
 #motionBtn:hover {
