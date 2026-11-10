@@ -6,60 +6,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سامر</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon"       href="favicon.ico" sizes="any">
+    <link rel="icon"       href="assets/img/favicon.png" type="image/png">
     <script src="assets/js/theme.js"></script>
 
-    <!-- link preview -->
-    <meta name="description"        content="samer's corner of the internet - no frameworks , no trackers and no bloat.">
+    <meta name="description"        content="samer biqai - portfolio, resume and photography. pure vanilla html, css and js: no frameworks, no trackers, no bloat.">
     <meta property="og:title"       content="Samer Biqai">
-    <meta property="og:description" content="samer's corner of the internet - no frameworks , no trackers and no bloat.">
+    <meta property="og:description" content="samer biqai - portfolio, resume and photography. pure vanilla html, css and js: no frameworks, no trackers, no bloat.">
     <meta property="og:image"       content="https://samerbq.com/assets/img/s-preview.jpg">
     <meta property="og:url"         content="https://samerbq.com/">
     <meta property="og:type"        content="website">
     <meta name="twitter:card"       content="summary">
 
-    <!-- google : name + photo in search results -->
     <meta name="robots"             content="max-image-preview:large">
+    <link rel="canonical"           href="https://samerbq.com/">
     <script type="application/ld+json">
     {
-        "@context"           : "https://schema.org",
-        "@type"              : "WebPage",
-        "name"               : "Samer Biqai",
-        "url"                : "https://samerbq.com/",
-        "primaryImageOfPage" : "https://samerbq.com/assets/img/s-preview.jpg",
-        "about"              : {
-            "@type"          : "Person",
-            "name"           : "Samer Biqai",
-            "url"            : "https://samerbq.com/",
-            "image"          : "https://samerbq.com/assets/img/s-preview.jpg"
-        }
+        "@context" : "https://schema.org",
+        "@graph"   : [
+            {
+                "@type"         : "WebSite",
+                "@id"           : "https://samerbq.com/#website",
+                "url"           : "https://samerbq.com/",
+                "name"          : "samer",
+                "alternateName" : [ "samerbq", "samerbq.com", "Samer Biqai" ],
+                "description"   : "samer biqai - portfolio, resume and photography. pure vanilla html, css and js: no frameworks, no trackers, no bloat.",
+                "inLanguage"    : "en",
+                "publisher"     : { "@id" : "https://samerbq.com/#person" }
+            },
+            {
+                "@type"            : "Person",
+                "@id"              : "https://samerbq.com/#person",
+                "name"             : "Samer Biqai",
+                "alternateName"    : "samerbq",
+                "url"              : "https://samerbq.com/",
+                "image"            : "https://samerbq.com/assets/img/s-preview.jpg",
+                "mainEntityOfPage" : "https://samerbq.com/",
+                "sameAs"           : [ "https://www.instagram.com/samerbq" ]
+            }
+        ]
     }
     </script>
 
 </head>
 <body>
 
-    <!-- live clock -->
-    <div data-nosnippet><div id="clock"> central european time - Loading...</div></div>
-
     <img src="assets/img/s.png" alt="S" class="left-img" width="250" height="283">
 
     <div class="content">
         <p> welcome to my corner of the internet - this site is designed to serve as a portfolio </p>
-        <p> built to showcase what ive made !  </p>
+        <p> built to showcase what ive made !                                                    </p>
     </div>
 
     <div id="linkArea"></div>
 
-    <!-- data-nosnippet : google leaves this text out of the search result description -->
     <div data-nosnippet><button id="darkModeBtn" onclick="toggleDarkMode()">dark mode</button></div>
 
-    <!-- line up / float - turned off for now ( links are always lined up ) -->
-    <!-- <button id="lineUpBtn"   onclick="toggleLineUp()"  >line up</button> -->
-
-    <!-- animations ( high / low ) - turned off for now -->
-    <!-- <button id="motionBtn"   onclick="toggleMotion()"  >animations : high</button> -->
-
-    <!-- <script src="assets/js/motion.js"  ></script> -->
     <script src="assets/js/home.js"    ></script>
     <script src="assets/js/darkmode.js"></script>
 

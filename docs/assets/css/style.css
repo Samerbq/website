@@ -1,5 +1,3 @@
-/* base */
-
 body {
 
     font-family      : 'Courier New', Courier, monospace  ;
@@ -16,12 +14,6 @@ a {
 
     color           : #0000ee  ;
     text-decoration : none       ;
-
-}
-
-a:hover {
-
-    text-decoration : underline  ;
 
 }
 
@@ -50,15 +42,6 @@ h1 {
 }
 
 
-/* home page */
-
-#clock {
-
-    margin-bottom : 20px       ;
-    color         : #555555  ;
-
-}
-
 .content p {
 
     margin-bottom : 15px  ;
@@ -67,20 +50,18 @@ h1 {
 
 .floating-link {
 
-    position        : absolute                           ;
-    color           : #0000ee                          ;
-    text-decoration : none                               ;
-    font-family     : 'Courier New', Courier, monospace  ;
-    z-index         : 100                                ;
-    padding         : 10px                               ;
-    cursor          : pointer                            ;
+    position    : absolute                           ;
+    color       : #0000ee                          ;
+    font-family : 'Courier New', Courier, monospace  ;
+    z-index     : 100                                ;
+    padding     : 10px                               ;
+    cursor      : pointer                            ;
 
 }
 
 .floating-link:hover {
 
-    text-decoration : underline  ;
-    color           : #000000  ;
+    color : #000000  ;
 
 }
 
@@ -94,8 +75,6 @@ h1 {
 
 }
 
-
-/* about page */
 
 .about-content {
 
@@ -118,9 +97,6 @@ h1 {
 }
 
 
-/* coming soon pages ( blog + resume ) */
-
-.blog-page,
 .resume-page {
 
     display         : flex    ;
@@ -131,7 +107,6 @@ h1 {
 
 }
 
-.blog-content,
 .resume-content {
 
     text-align : center  ;
@@ -139,90 +114,7 @@ h1 {
 }
 
 
-/* links page ( open button in the middle of the screen , 24px = half the button ) */
-
-.stack-container {
-
-    position        : absolute                                 ;
-    top             : 50vh                                     ;
-    left            : 50%                                      ;
-    transform       : translate( -50%, calc( -100% + 24px ) )  ;
-    width           : 120px                                    ;
-    height          : 360px                                    ;
-    display         : flex                                     ;
-    flex-direction  : column                                   ;
-    justify-content : flex-end                                 ;
-    align-items     : center                                   ;
-
-}
-
-.folder-trigger {
-
-    padding     : 10px 20px         ;
-    background  : #fcfcfc         ;
-    border      : 1px solid #eee  ;
-    width       : 120px             ;
-    box-sizing  : border-box        ;
-    text-align  : center            ;
-    user-select : none              ;
-    cursor      : pointer           ;
-
-}
-
-.folder-trigger .arrow {
-
-    display        : none              ;
-    transform      : rotate( -90deg )  ;
-    letter-spacing : -1px              ;
-
-}
-
-.stack-container.open .folder-trigger .label { display : none         ; }
-.stack-container.open .folder-trigger .arrow { display : inline-block ; }
-
-.item {
-
-    display         : block                                      ;
-    padding         : 10px 20px                                  ;
-    background      : #fcfcfc                                  ;
-    border          : 1px solid #eee                           ;
-    text-decoration : none                                       ;
-    color           : #333                                     ;
-    transition      : all 0.4s cubic-bezier( 0.2, 0.8, 0.2, 1 )  ;
-    position        : absolute                                   ;
-    bottom          : 0                                          ;
-    left            : 0                                          ;
-    width           : 120px                                      ;
-    box-sizing      : border-box                                 ;
-    text-align      : center                                     ;
-    box-shadow      : 0 5px 14px rgba( 0, 0, 0, 0.1 )          ;
-    opacity         : 0                                          ;
-    pointer-events  : none                                       ;
-
-}
-
-.item:hover {
-
-    text-decoration : none  ;
-
-}
-
-.stack-container.open .item {
-
-    opacity        : 1     ;
-    pointer-events : auto  ;
-
-}
-
-.stack-container.open .item:nth-child( 1 ) { transform : translate( 16px, -128px ) rotate( 4deg ) ; }
-.stack-container.open .item:nth-child( 2 ) { transform : translate(  6px,  -64px ) rotate( 2deg ) ; }
-
-
-/* buttons ( dark mode + line up ) */
-
-#darkModeBtn,
-#lineUpBtn,
-#motionBtn {
+#darkModeBtn {
 
     position    : fixed      ;
     top         : 20px       ;
@@ -237,21 +129,6 @@ h1 {
 
 }
 
-#lineUpBtn {
-
-    top : 50px  ;
-
-}
-
-#motionBtn {
-
-    top    : auto  ;
-    right  : auto  ;
-    bottom : 20px  ;
-    left   : 20px  ;
-
-}
-
 .back-corner {
 
     position  : fixed  ;
@@ -262,19 +139,6 @@ h1 {
 
 }
 
-#darkModeBtn:hover,
-#lineUpBtn:hover,
-#motionBtn:hover {
-
-    text-decoration : underline  ;
-
-}
-
-
-/* dark mode */
-
-/* html.dark-theme is set in the head by theme.js , body.dark-theme by darkmode.js at the end of the page
-   -> both are listed so everything is dark from the very first frame ( no white flash ) */
 
 html.dark-theme {
 
@@ -293,30 +157,12 @@ body.dark-theme {
 
 html.dark-theme a,
 html.dark-theme #darkModeBtn,
-html.dark-theme #lineUpBtn,
-html.dark-theme #motionBtn,
 body.dark-theme a,
-body.dark-theme #darkModeBtn,
-body.dark-theme #lineUpBtn,
-body.dark-theme #motionBtn {
+body.dark-theme #darkModeBtn {
 
     color : #8ab4f8 !important  ;
 
 }
-
-html.dark-theme .folder-trigger,
-html.dark-theme .item,
-body.dark-theme .folder-trigger,
-body.dark-theme .item {
-
-    background   : #1e1e1e             ;
-    border-color : #333                ;
-    color        : #e0e0e0 !important  ;
-
-}
-
-
-/* dark mode : a photo fades in once it is fully loaded ( theme.js ) , no half drawn photo on reload */
 
 html.dark-theme .left-img {
 
@@ -331,17 +177,6 @@ html.dark-theme .left-img.loaded {
 
 }
 
-
-/* animations on low ( motion.js ) */
-
-body.low-motion .item {
-
-    transition : none  ;
-
-}
-
-
-/* mobile */
 
 @media screen and ( max-width : 768px ) {
 
@@ -387,22 +222,6 @@ body.low-motion .item {
         margin-top : 20px !important    ;
         padding    : 0 20px !important  ;
         text-align : left               ;
-
-    }
-
-    .stack-container {
-
-        position  : relative   ;
-        top       : auto       ;
-        left      : auto       ;
-        transform : none       ;
-        margin    : 40px auto  ;
-
-    }
-
-    #lineUpBtn {
-
-        display : none  ;
 
     }
 

@@ -12,6 +12,7 @@
     const BAND   = 100
     const FH     = IH + BAND * 2
     const SCALE  = 1.25
+    const ISO    = [ 200, 100, 50, 200, 100, 100, 400, 100, 200, 400, 100, 100 ]
     const COLORS = [ '#dcb7c8', '#afcdd0', '#d4adb0', '#d5caae', '#a7a1cf', '#bfc9a8', '#c8b3b0', '#c3d6e0', '#e3c0c2', '#cfc6d9', '#d1b7a7', '#9fb8c4' ]
 
     const canvas = document.createElement( 'canvas' )
@@ -57,7 +58,10 @@
             ctx.textBaseline = 'middle'
 
             ctx.letterSpacing = '4px'
-            ctx.fillText( i % 2 ? 'SB-36' : 'SAMER 400', x + ( i % 2 ? 360 : 36 ), 22 )
+            ctx.fillText( 'SAMER ' + ISO[ i ], x + 36, 22 )
+
+            if ( i % 2 ) ctx.fillText( 'SB-36', x + 360, 22 )
+
             ctx.letterSpacing = '0px'
 
             const n = String( i + 1 )
@@ -134,7 +138,6 @@
         uW      : { value : 500 },
         uAmp    : { value : 1 },
         uPhase  : { value : 0 },
-        uCenter : { value : 0 },
         uColor  : { value : 1 },
         uHover  : { value : 0 },
         uLens   : { value : 0 },
@@ -183,7 +186,6 @@
             uniform float     uOffset ;
             uniform float     uFrames ;
             uniform float     uFw ;
-            uniform float     uCenter ;
             uniform float     uColor ;
             uniform float     uHover ;
             uniform float     uLens ;
@@ -199,10 +201,9 @@
 
                 if ( c.a < 0.5 ) discard ;
 
-                float grey = dot( c.rgb, vec3( 0.299, 0.587, 0.114 ) ) ;
-                float mid   = 1.0 - smoothstep( uFw * 0.47, uFw * 0.53, abs( vX - uCenter ) ) ;
+                float grey  = dot( c.rgb, vec3( 0.299, 0.587, 0.114 ) ) ;
                 float hover = ( 1.0 - smoothstep( uFw * 0.47, uFw * 0.53, abs( vX - uHover ) ) ) * uLens ;
-                vec3  col   = mix( vec3( grey ), c.rgb, max( mid, hover ) * uColor ) ;
+                vec3  col   = mix( vec3( grey ), c.rgb, hover * uColor ) ;
 
                 vec3  n     = normalize( vNormal ) ;
                 float light = 0.72 + 0.28 * abs( dot( n, normalize( vec3( 0.2, 0.5, 1.0 ) ) ) ) ;
@@ -420,7 +421,6 @@
             uniforms.uOffset.value = offset
             uniforms.uPhase.value  = offset * 0.35
             uniforms.uAmp.value    = 1 + Math.min( speed * 18, 1.1 )
-            uniforms.uCenter.value = ( Math.round( offset ) - offset ) * fw
             uniforms.uColor.value  = Math.max( 0, 1 - speed * 40 )
 
             hover()

@@ -1,48 +1,13 @@
-// live clock
-
-function updateTime() {
-
-    const now        = new Date()
-    const timeString = now.toLocaleTimeString( 'en-US', {
-        timeZone : 'Europe/Brussels',
-        hour12   : true
-    } )
-
-    document.getElementById( 'clock' ).innerText = ' central european time - ' + timeString
-}
-
-setInterval( updateTime, 1000 )
-updateTime()
-
-
-// floating links
-
 const LINKS = [
     { label : 'about',   url : 'about'   },
-    { label : 'faq',     url : 'faq'     },
-    { label : 'blog',    url : 'blog'    },
     { label : 'resume',  url : 'resume'  },
+    { label : 'photos',  url : 'photos/' },
     { label : 'contact', url : 'contact' },
-    { label : 'links',   url : 'links'   }
+    { label : 'faq',     url : 'faq'     }
 ]
 
-const floatingLinks = []
-const area          = document.getElementById( 'linkArea' )
-
-const SPEED = 0.70
-
-// float - turned off for now -> links are always lined up
-
-// no choice saved yet -> line up when animations are on low
-
-// const savedLineUp = localStorage.getItem( 'lineUp' )
-// const lowMotion   = document.body.classList.contains( 'low-motion' )
-
-// let linedUp = savedLineUp === null ? lowMotion : savedLineUp === 'on'
-
-let linedUp = true
-
-LINKS.forEach( ( link ) => {
+const area  = document.getElementById( 'linkArea' )
+const links = LINKS.map( ( link ) => {
 
     const el = document.createElement( 'a' )
 
@@ -52,89 +17,20 @@ LINKS.forEach( ( link ) => {
 
     area.appendChild( el )
 
-    floatingLinks.push( {
-        el,
-        x  : Math.random() * ( area.offsetWidth  - 60 ),
-        y  : Math.random() * ( area.offsetHeight - 20 ),
-        vx : ( Math.random() > 0.5 ? 1 : -1 ) * SPEED,
-        vy : ( Math.random() > 0.5 ? 1 : -1 ) * SPEED
-    } )
+    return el
 } )
 
-function animate() {
+function layout() {
 
-    const w       = area.offsetWidth
-    const h       = area.offsetHeight
-    const spacing = w / floatingLinks.length
+    const spacing = area.offsetWidth / links.length
 
-    floatingLinks.forEach( ( link, i ) => {
-
-        if ( linedUp ) {
-
-            const targetX = spacing * i + ( spacing - link.el.offsetWidth ) / 2
-            const targetY =               ( h - link.el.offsetHeight      ) / 2
-
-            link.x += ( targetX - link.x ) * 0.08
-            link.y += ( targetY - link.y ) * 0.08
-
-        } /* float - turned off for now
-
-        else {
-
-            link.x += link.vx
-            link.y += link.vy
-
-            if ( link.x <= 0 || link.x >= w - link.el.offsetWidth ) {
-                link.vx *= -1
-                link.x   = Math.max( 0, Math.min( w - link.el.offsetWidth, link.x ) )
-            }
-
-            if ( link.y <= 0 || link.y >= h - link.el.offsetHeight ) {
-                link.vy *= -1
-                link.y   = Math.max( 0, Math.min( h - link.el.offsetHeight, link.y ) )
-            }
-        } */
-
-        link.el.style.left = link.x + 'px'
-        link.el.style.top  = link.y + 'px'
-    } )
-
-    requestAnimationFrame( animate )
-}
-
-setTimeout( animate, 100 )
-
-
-// line up button - turned off for now
-
-/*
-function setLineUp( on ) {
-
-    linedUp = on
-
-    localStorage.setItem   ( 'lineUp', linedUp ? 'on' : 'off' )
-    document.getElementById( 'lineUpBtn' ).innerText = linedUp ? 'float' : 'line up'
-}
-
-function toggleLineUp() {
-    setLineUp( !linedUp )
-}
-*/
-
-// start lined up
-
-if ( linedUp ) {
-
-    // document.getElementById( 'lineUpBtn' ).innerText = 'float'
-
-    const spacing = area.offsetWidth / floatingLinks.length
-
-    floatingLinks.forEach( ( link, i ) => {
-
-        link.x = spacing * i + ( spacing - link.el.offsetWidth            ) / 2
-        link.y =               ( area.offsetHeight - link.el.offsetHeight ) / 2
-
-        link.el.style.left = link.x + 'px'
-        link.el.style.top  = link.y + 'px'
+    links.forEach( ( el, i ) => {
+        el.style.left = spacing * i + ( spacing - el.offsetWidth            ) / 2 + 'px'
+        el.style.top  =               ( area.offsetHeight - el.offsetHeight ) / 2 + 'px'
     } )
 }
+
+layout()
+
+window.addEventListener( 'resize', layout )
+document.fonts.ready.then( layout )

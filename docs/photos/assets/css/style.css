@@ -113,14 +113,6 @@ button {
 
 }
 
-.nav-links a:hover,
-.nav-toggle:hover span:not( .plus ) {
-
-    text-decoration       : underline  ;
-    text-underline-offset : 3px        ;
-
-}
-
 
 .plus {
 
@@ -574,12 +566,6 @@ body.intro .col {
 
 }
 
-.slider-nav button:hover {
-
-    text-decoration       : underline  ;
-    text-underline-offset : 3px        ;
-
-}
 
 .slider .counter {
 
@@ -596,12 +582,6 @@ body.intro .col {
 
 }
 
-.nav-links .current {
-
-    text-decoration       : underline  ;
-    text-underline-offset : 3px        ;
-
-}
 
 .all {
 
@@ -720,12 +700,6 @@ footer {
 
 }
 
-.footer-links a:hover {
-
-    text-decoration       : underline  ;
-    text-underline-offset : 3px        ;
-
-}
 
 .footer-logo {
 
