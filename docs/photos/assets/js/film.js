@@ -250,6 +250,9 @@
     let offset  = 0
     let target  = 0
     let speed   = 0
+    let lift    = 0
+    let raise   = 0
+    let raiseV  = 0
     let lastY   = window.scrollY
     let still   = null
     let visible = false
@@ -279,11 +282,18 @@
     }, WAIT )
 
     let dragging = false
+    let easing   = false
     let dragX    = 0
 
     stage.style.touchAction = 'pan-y'
 
     stage.addEventListener( 'pointerdown', ( e ) => {
+
+        if ( easing ) {
+
+            easing = false
+            lift   = raise / 18
+        }
 
         dragging = true
         dragX    = e.clientX
@@ -302,6 +312,14 @@
     } )
 
     function stopDrag() {
+
+        if ( dragging ) {
+
+            easing = true
+            raise  = Math.min( lift * 18, 1.1 )
+            raiseV = 0
+        }
+
         dragging = false
     }
 
@@ -414,13 +432,40 @@
         const before = offset
 
         offset += ( target - offset ) * ( 1 - Math.pow( 0.92, dt ) )
-        speed  += ( Math.abs( offset - before ) / dt - speed ) * ( 1 - Math.pow( 0.9, dt ) )
+
+        const moving = Math.abs( offset - before ) / dt
+        const decay  = 1 - Math.pow( 0.9, dt )
+
+        speed += ( moving - speed ) * decay
+
+        if ( dragging ) {
+
+            lift += ( Math.max( moving, lift ) - lift ) * decay
+
+        } else if ( easing ) {
+
+            const goal = Math.min( moving * 18, 1.1 )
+
+            raiseV += ( goal - raise ) * 0.006 * dt
+            raiseV *= Math.pow( 0.85, dt )
+            raise   = Math.max( 0, raise + raiseV * dt )
+
+            if ( Math.abs( raise - goal ) < 0.01 && Math.abs( raiseV ) < 0.001 ) {
+
+                easing = false
+                lift   = raise / 18
+            }
+
+        } else {
+
+            lift += ( moving - lift ) * decay
+        }
 
         if ( visible ) {
 
             uniforms.uOffset.value = offset
             uniforms.uPhase.value  = offset * 0.35
-            uniforms.uAmp.value    = 1 + Math.min( speed * 18, 1.1 )
+            uniforms.uAmp.value    = 1 + ( easing ? raise : Math.min( lift * 18, 1.1 ) )
             uniforms.uColor.value  = Math.max( 0, 1 - speed * 40 )
 
             hover()

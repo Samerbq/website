@@ -263,20 +263,6 @@ document.addEventListener( 'keydown', ( e ) => {
 } )
 
 
-document.querySelectorAll( '.nav-links a[href^="#"]' ).forEach( ( a ) => {
-
-    a.addEventListener( 'click', ( e ) => {
-
-        const target = document.querySelector( a.getAttribute( 'href' ) )
-
-        e.preventDefault()
-
-        if ( lenis ) lenis.scrollTo( target, { offset : -60, duration : 1.6 } )
-        else         target.scrollIntoView( { behavior : 'smooth' } )
-    } )
-} )
-
-
 const SLIDE_COLORS = [ '#afcdd0', '#dcb7c8', '#d5caae', '#a7a1cf', '#c8b3b0', '#bfc9a8', '#d4adb0', '#c3d6e0' ]
 const SLIDE_SHAPES = [ '3 / 4', '4 / 3', '2 / 3', '4 / 5', '3 / 2', '1 / 1' ]
 

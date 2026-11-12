@@ -107,9 +107,8 @@ button {
 .nav-links {
 
     position : absolute  ;
-    left     : 85%       ;
+    right    : 6%        ;
     display  : flex      ;
-    gap      : 6px       ;
 
 }
 
@@ -718,13 +717,6 @@ footer {
     :root {
 
         --u : calc( 100vw / 760 )  ;
-
-    }
-
-    .nav-links {
-
-        left  : auto  ;
-        right : 24px  ;
 
     }
 
